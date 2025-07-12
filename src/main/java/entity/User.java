@@ -1,9 +1,10 @@
 package entity;
 
-/**
- * A class of User
- */
+import java.util.List;
 
+/**
+ * A class representing a user.
+ */
 public class User {
     private String userName;
     private String postalCode;

@@ -1,25 +1,32 @@
 package entity;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * A class of UserSession
+ * A class representing a single session of a user's interaction with the system.
  */
-
 public class UserSession {
-    UUID sessionID;
+    private UUID sessionID;
     private User currentUser;
     private String userPrompt;
-    private List<String> extractedKeywords;
+    private List<String> extractedKeywords = new ArrayList<>();
     private List<Location> matchedLocations;
     private List<Recommendation> recommendations;
 
-    public UserSession(User currentUser, String userPrompt, List<String> extractedKeywords, List<Location> matchedLocations, List<Recommendation> recommendations) {
+    public UserSession(User currentUser, String userPrompt, List<String> extractedKeywords,
+                       List<Location> matchedLocations, List<Recommendation> recommendations) {
+        this.sessionID = UUID.randomUUID();
         this.currentUser = currentUser;
         this.userPrompt = userPrompt;
         this.extractedKeywords = extractedKeywords;
         this.matchedLocations = matchedLocations;
         this.recommendations = recommendations;
+    }
+
+    public UUID getSessionID() {
+        return sessionID;
     }
 
     public User getCurrentUser() {

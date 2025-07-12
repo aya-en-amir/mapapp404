@@ -1,22 +1,23 @@
 package entity;
 
-/**
- * A class of Location
- */
+import java.util.List;
+import java.util.ArrayList;
 
+/**
+ * A class representing a location.
+ */
 public class Location {
     private String name;
-    private float latitude;
-    private float longitude;
-    private List<String> reviews = new ArrayList<String>;
+    private float lat;
+    private float lon;
+    private List<String> reviews = new ArrayList<>();
 
-    public Location(String name, float latitude, float longitude, List<String> reviews) {
+    public Location(String name, float lat, float lon, List<String> reviews) {
         this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.lat = lat;
+        this.lon = lon;
         this.reviews = reviews;
     }
-
 
     public String getName() {
         return name;
@@ -27,19 +28,19 @@ public class Location {
     }
 
     public float getLatitude() {
-        return latitude;
+        return lat;
     }
 
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
+    public void setLatitude(float lat) {
+        this.lat = lat;
     }
 
     public float getLongitude() {
-        return longitude;
+        return lon;
     }
 
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
+    public void setLongitude(float lon) {
+        this.lon = lon;
     }
 
     public List<String> getReviews() {
