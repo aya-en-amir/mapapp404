@@ -15,14 +15,9 @@ public class UserSession {
     private List<Location> matchedLocations;
     private List<Recommendation> recommendations;
 
-    public UserSession(User currentUser, String userPrompt, List<String> extractedKeywords,
-                       List<Location> matchedLocations, List<Recommendation> recommendations) {
+    public UserSession(User currentUser) {
         this.sessionID = UUID.randomUUID();
         this.currentUser = currentUser;
-        this.userPrompt = userPrompt;
-        this.extractedKeywords = extractedKeywords;
-        this.matchedLocations = matchedLocations;
-        this.recommendations = recommendations;
     }
 
     public UUID getSessionID() {

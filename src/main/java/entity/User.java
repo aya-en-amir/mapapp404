@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * A class representing a user.
@@ -10,10 +11,10 @@ public class User {
     private String postalCode;
     private List<UserSession> sessions;
 
-    public User(String userName, String postalCode, List<UserSession> sessions) {
+    public User(String userName, String postalCode) {
         this.userName = userName;
         this.postalCode = postalCode;
-        this.sessions = sessions;
+        this.sessions = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -38,5 +39,9 @@ public class User {
 
     public void setSessions(List<UserSession> sessions) {
         this.sessions = sessions;
+    }
+
+    public void addSessions(List<UserSession> sessions){
+        this.sessions.add(sessions);
     }
 }
