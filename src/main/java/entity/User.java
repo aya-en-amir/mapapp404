@@ -41,7 +41,7 @@ public class User {
         this.sessions = sessions;
     }
 
-    public void addSessions(List<UserSession> sessions){
-        this.sessions.add(sessions);
+    public void addSession(UserSession session) {
+        this.sessions.add(session);
     }
 }
