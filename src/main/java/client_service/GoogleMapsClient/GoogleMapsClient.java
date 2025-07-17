@@ -1,4 +1,4 @@
-package main.client_service;
+package client_service.GoogleMapsClient;
 
 import entity.Location;
 import main.interface_service.LocationFinder;
