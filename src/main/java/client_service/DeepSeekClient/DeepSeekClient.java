@@ -28,8 +28,8 @@ public class DeepSeekClient implements VibeExtractorInterface {
     public DeepSeekClient(String prompt){
         this.userPrompt = prompt;
         Dotenv dotenv = Dotenv.load();
-        this.API_KEY = dotenv.get("API_KEY");
-        this.endpoint = dotenv.get("ENDPOINT");
+        this.API_KEY = dotenv.get("DEEPSEEK_API_KEY");
+        this.endpoint = dotenv.get("DEEPSEEK_ENDPOINT");
     }
 
     public String getUserPrompt(){
