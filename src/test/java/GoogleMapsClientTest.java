@@ -1,12 +1,14 @@
 import entity.Location;
 import client_service.GoogleMapsClient.GoogleMapsClient;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
 
 public class GoogleMapsClientTest {
 
     public static void main(String[] args) throws Exception {
-        final String apiKey = "";
+        Dotenv dotenv = Dotenv.load();
+        final String apiKey = dotenv.get("GOOGLE_MAPS_API_KEY");
         final int radiusInMeters = 5000;
         final String postalCode = "M5S 2E4";
 
