@@ -1,7 +1,7 @@
 package client_service.GoogleMapsClient;
 
 import entity.Location;
-import main.interface_service.LocationFinder;
+import interface_service.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
