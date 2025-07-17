@@ -58,7 +58,7 @@ public class DeepSeekClient implements VibeExtractorInterface {
                     "            \"}\n" +
                     "          ]\n" +
                     "        }";
-            System.out.println("Loaded API Key: " + getAPI_KEY());
+//            System.out.println("Loaded API Key: " + getAPI_KEY());
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(getEndpoint()))
                     .header("Authorization", "Bearer " + getAPI_KEY())
