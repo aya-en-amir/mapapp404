@@ -1,6 +1,7 @@
-package client_service.DeepSeekClient;
+package client_services;
 
-import interface_service.VibeExtractorInterface;
+
+import interface_services.VibeExtractorInterface;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class DeepSeekClient implements VibeExtractorInterface {
                     "            \"}\n" +
                     "          ]\n" +
                     "        }";
-//            System.out.println("Loaded API Key: " + getAPI_KEY());
+            System.out.println("Loaded API Key: " + getAPI_KEY());
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(getEndpoint()))
                     .header("Authorization", "Bearer " + getAPI_KEY())
@@ -66,14 +67,12 @@ public class DeepSeekClient implements VibeExtractorInterface {
                     .build();
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
+            System.out.println("Response is a success! \n" + response.body());
             //editing JSON file to see responses (in an organized format)
 //            Files.write(Paths.get(JSON_FILE_PATH), response.body().getBytes());
 //            System.out.println("test.json edited with the response - check it out!");
             // update responseList
-            ArrayList<String> returnList = extractFromJSON(response.body());
-            System.out.println("Response is a success! \n" + returnList);
-            return returnList;
+            return extractFromJSON(response.body());
         }
         catch(IOException e){
             System.out.println("IO Exception: " + e.getMessage());
