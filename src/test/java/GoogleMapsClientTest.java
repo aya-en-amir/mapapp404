@@ -1,7 +1,5 @@
-package main.test;
-
 import entity.Location;
-import main.client_service.GoogleMapsClient;
+import client_service.GoogleMapsClient.GoogleMapsClient;
 
 import java.util.List;
 
