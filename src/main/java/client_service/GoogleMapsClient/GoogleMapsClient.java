@@ -22,7 +22,7 @@ public class GoogleMapsClient implements LocationFinder {
     private final String apiKey;
     private final int meterRadius;
 
-    public GoogleMapsClient(String apiKey, int meterRadius) {
+    public GoogleMapsClient(int meterRadius) {
         final Dotenv dotenv = Dotenv.load();
         this.apiKey = dotenv.get("GOOGLE_MAPS_API_KEY");
         this.meterRadius = meterRadius;
