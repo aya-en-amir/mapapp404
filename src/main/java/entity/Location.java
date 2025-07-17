@@ -50,4 +50,9 @@ public class Location {
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s\nLat: %f\nLon: %f\nReviews: %s\n", name, lat, lon, reviews.toString());
+    }
 }
