@@ -1,6 +1,6 @@
 package client_service.ReviewMatcher;
 
-import entity.Location;
+import java.entity.Location;
 
 import java.util.List;
 
