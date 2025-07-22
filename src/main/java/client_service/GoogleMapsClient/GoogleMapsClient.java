@@ -70,9 +70,27 @@ public class GoogleMapsClient implements LocationFinder {
         );
 
         final JSONObject response = getJsonResponse(url);
-        results.addAll(toList(response.getJSONArray("results")));
-
+        final List<JSONObject> nearbyPlaces = toList(response.getJSONArray("results"));
+        for (JSONObject place : nearbyPlaces) {
+            String placeId = place.optString("place_id", null);
+            if (placeId != null) {
+                JSONObject detailed = fetchDetails(placeId);
+                if (detailed != null) {
+                    results.add(detailed);
+                }
+            }
+        }
         return results;
+    }
+
+    private JSONObject fetchDetails(String placeId) throws Exception {
+        final String url = String.format(
+                "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,geometry,reviews&key=%s",
+                placeId, apiKey
+        );
+        JSONObject response = getJsonResponse(url);
+        JSONObject result = response.optJSONObject("result");
+        return result;
     }
 
     /**
