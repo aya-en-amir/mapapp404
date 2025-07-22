@@ -1,6 +1,7 @@
 package client_service.GoogleMapsClient;
 
 import entity.Location;
+import interface_service.InvalidPostalCodeException;
 import interface_service.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,6 +35,14 @@ public class GoogleMapsClient implements LocationFinder {
         final String geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="
                 + encodedPostal + "&key=" + apiKey;
         final JSONObject geoResponse = getJsonResponse(geocodeUrl);
+        final String status = geoResponse.getString("status");
+
+        if (status.equals("ZERO_RESULTS")) {
+            throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
+        }
+        else if (!status.equals("OK")) {
+            throw new InvalidPostalCodeException("An error occurred with Google Maps.");
+        }
 
         final JSONArray results = geoResponse.getJSONArray("results");
 
