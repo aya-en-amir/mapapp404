@@ -11,13 +11,26 @@ public interface UserDataAccessInterface {
 
     /**
      * Get a specific user from the user's name.
-     * @param userName the name of the user we want
+     * @param username the name of the user we want
      */
-    User getUser(String userName);
+    User getUser(String username);
 
     /**
      * Delete the user's information from their username.
-     * @param userName the name of the user we want
+     * @param username the name of the user we want
      */
-    String deleteUser(String userName);
+    void deleteUser(String username);
+
+    /**
+     * Returns the username of the current user.
+     */
+    String getCurrentUsername();
+
+    /**
+     * Setting the current user.
+     * @param username the name of the current user
+     */
+    void setCurrentUsername(String username);
+
+
 }
