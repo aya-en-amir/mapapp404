@@ -1,8 +1,8 @@
 package client_service.ReviewMatcher;
 
-import entity.Location;
-
 import java.util.List;
+
+import entity.Location;
 
 public class ReviewMatcher {
     private List<String> keywords;
@@ -12,9 +12,13 @@ public class ReviewMatcher {
         this.keywords = keywords;
         this.location = location;
     }
+
     public double calculateScore() {
         double totalScore = 0.0;
 
+        if (location.getReviews().isEmpty()) {
+            return totalScore;
+        }
         for (String word : keywords) {
             for (String locationReview : location.getReviews()) {
                 CosineCalculator calculator = new CosineCalculator(word.toLowerCase(), locationReview.toLowerCase());
