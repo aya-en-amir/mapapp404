@@ -4,6 +4,7 @@ import entity.Location;
 import interface_service.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -21,8 +22,9 @@ public class GoogleMapsClient implements LocationFinder {
     private final String apiKey;
     private final int meterRadius;
 
-    public GoogleMapsClient(String apiKey, int meterRadius) {
-        this.apiKey = apiKey;
+    public GoogleMapsClient(int meterRadius) {
+        final Dotenv dotenv = Dotenv.load();
+        this.apiKey = dotenv.get("GOOGLE_MAPS_API_KEY");
         this.meterRadius = meterRadius;
     }
 
