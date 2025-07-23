@@ -31,7 +31,9 @@ public class Main {
 //        dsclient.extractKeywords();
 
 import client_service.GoogleMapsClient.GoogleMapsClient;
+import client_service.Recommendation.RecommendationService;
 import entity.Location;
+import entity.Recommendation;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
@@ -53,8 +55,12 @@ public class Main {
             System.out.println("No locations found for the given postal code.");
         }
         else {
-            System.out.println("Found " + locations.size() + " locations:");
-            for (Location location : locations) {
+            // RecommendationService to find the recommended locations
+            RecommendationService recommendationService = new RecommendationService(dsclient);
+            Recommendation recommendation = recommendationService.recommend(locations, 5); // Top 5
+
+            System.out.println("Found " + recommendation.getLocations() + " locations:");
+            for (Location location : recommendation.getLocations()) {
                 System.out.println(location);
             }
         }
