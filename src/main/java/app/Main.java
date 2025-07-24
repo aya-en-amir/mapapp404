@@ -1,17 +1,13 @@
 package app;
 
-import client_service.DeepSeekClient.DeepSeekClient;
-tasfia.ara
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginViewModel;
-import use_case.login.LoginInputBoundary;
 import view.LoginView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
         final JFrame application = new JFrame("Login");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,5 +66,6 @@ public class Main {
         }
         new RecommendationView(recommendations);
         main
+
     }
 }

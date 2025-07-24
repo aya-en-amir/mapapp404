@@ -1,17 +1,9 @@
 package view;
 
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
+import app.AppController;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * The View for when the user is logging into the program.
@@ -62,8 +54,26 @@ public class LoginView extends JPanel{
         this.add(vibeFieldError);
         this.add(findLocationButton);
         this.add(buttons);
+
+        findLocationButton.addActionListener(e -> {
+            String username = usernameField.getText();
+            String postalCode = new String(postalCodeInputField.getPassword());
+            String vibe = new String(vibeField.getPassword());
+
+            if (username.isEmpty() || postalCode.isEmpty() || vibe.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please fill out all fields.",
+                        "Missing Information",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            AppController controller = new AppController();
+            controller.getRecommendations(vibe);
+        });
     }
 
 
 
 }
+

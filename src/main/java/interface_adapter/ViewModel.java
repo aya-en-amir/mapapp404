@@ -48,3 +48,4 @@ public class ViewModel<T> {
         this.support.addPropertyChangeListener(listener);
     }
 }
+
