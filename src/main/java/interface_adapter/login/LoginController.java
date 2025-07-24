@@ -15,4 +15,3 @@ public class LoginController {
         loginInputBoundary.execute(loginInputData);
     }
 }
-
