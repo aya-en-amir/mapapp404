@@ -11,9 +11,13 @@ import java.util.List;
 import java.util.Set;
 import entity.Location;
 
-public class MapView extends JPanel {
+
+public class MapView extends JFrame {
 
     public MapView(List<Location> locations) {
+        setTitle("Map View");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
         JXMapViewer mapViewer = new JXMapViewer();
@@ -24,22 +28,22 @@ public class MapView extends JPanel {
 
         if (!locations.isEmpty()) {
             Location first = locations.get(0);
-            GeoPosition center = new GeoPosition(first.getLatitude(),
-                    first.getLongitude());
+            GeoPosition center = new GeoPosition(first.getLatitude(), first.getLongitude());
             mapViewer.setZoom(5);
             mapViewer.setAddressLocation(center);
         }
 
+        //display red dots to show each location on map.
         Set<Waypoint> waypoints = new HashSet<>();
         for (Location loc : locations) {
-            waypoints.add(new DefaultWaypoint(new GeoPosition(loc.getLatitude(),
-                    loc.getLongitude())));
+            waypoints.add(new DefaultWaypoint(new GeoPosition(loc.getLatitude(), loc.getLongitude())));
         }
 
         WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<>();
         waypointPainter.setWaypoints(waypoints);
-
         mapViewer.setOverlayPainter(waypointPainter);
+
         add(mapViewer, BorderLayout.CENTER);
+        setVisible(true);
     }
 }
