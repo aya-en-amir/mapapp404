@@ -6,3 +6,4 @@ LoginInputBoundary --> defines how the outer layers can interact with the login 
 public interface LoginInputBoundary {
     void execute(LoginInputData loginInputData);
 }
+

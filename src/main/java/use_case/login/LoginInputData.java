@@ -35,3 +35,4 @@ public class LoginInputData {
         user.addSession(userSession);
     }
 }
+
