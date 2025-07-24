@@ -30,10 +30,15 @@ public class Main {
 //        DeepSeekClient dsclient = new DeepSeekClient("I am stressed and anxious");
 //        dsclient.extractKeywords();
 
+import client_service.DeepSeekClient.DeepSeekClient;
 import client_service.GoogleMapsClient.GoogleMapsClient;
+import client_service.Recommendation.RecommendationService;
 import entity.Location;
+import entity.Recommendation;
 import io.github.cdimascio.dotenv.Dotenv;
+import view.RecommendationView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -47,19 +52,23 @@ public class Main {
         final String postalCode = "M5S 2E4";
 
         final GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
-
         final List<Location> locations = client.serveLocations(postalCode);
+
+        List<Recommendation> recommendations;
         if (locations == null || locations.isEmpty()) {
             System.out.println("No locations found for the given postal code.");
-        }
-        else {
-            System.out.println("Found " + locations.size() + " locations:");
-            for (Location location : locations) {
-                System.out.println(location);
+            return;
+        } else {
+            // RecommendationService to find the recommended locations
+            RecommendationService recommendationService = new RecommendationService(dsclient);
+            recommendations = Collections.singletonList(recommendationService.recommend(locations, 5));
+
+            for (Recommendation rec : recommendations) {
+                System.out.println(rec.getLocations());
             }
+
         }
-
-
-main
+        new RecommendationView(recommendations);
+        main
     }
 }
