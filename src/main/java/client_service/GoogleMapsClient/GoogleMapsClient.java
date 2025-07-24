@@ -1,6 +1,7 @@
 package client_service.GoogleMapsClient;
 
 import entity.Location;
+import interface_service.InvalidPostalCodeException;
 import interface_service.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,6 +35,14 @@ public class GoogleMapsClient implements LocationFinder {
         final String geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="
                 + encodedPostal + "&key=" + apiKey;
         final JSONObject geoResponse = getJsonResponse(geocodeUrl);
+        final String status = geoResponse.getString("status");
+
+        if (status.equals("ZERO_RESULTS")) {
+            throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
+        }
+        else if (!status.equals("OK")) {
+            throw new InvalidPostalCodeException("An error occurred with Google Maps.");
+        }
 
         final JSONArray results = geoResponse.getJSONArray("results");
 
@@ -70,9 +79,27 @@ public class GoogleMapsClient implements LocationFinder {
         );
 
         final JSONObject response = getJsonResponse(url);
-        results.addAll(toList(response.getJSONArray("results")));
-
+        final List<JSONObject> nearbyPlaces = toList(response.getJSONArray("results"));
+        for (JSONObject place : nearbyPlaces) {
+            String placeId = place.optString("place_id", null);
+            if (placeId != null) {
+                JSONObject detailed = fetchDetails(placeId);
+                if (detailed != null) {
+                    results.add(detailed);
+                }
+            }
+        }
         return results;
+    }
+
+    private JSONObject fetchDetails(String placeId) throws Exception {
+        final String url = String.format(
+                "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,geometry,reviews&key=%s",
+                placeId, apiKey
+        );
+        JSONObject response = getJsonResponse(url);
+        JSONObject result = response.optJSONObject("result");
+        return result;
     }
 
     /**
