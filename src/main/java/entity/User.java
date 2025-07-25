@@ -41,6 +41,7 @@ public class User {
         this.sessions = sessions;
     }
 
+
     public void addSession(UserSession session) {
         this.sessions.add(session);
     }
@@ -49,6 +50,5 @@ public class User {
         for (UserSession userSession : sessions) {
             this.sessions.add(userSession);
         }
-
     }
 }

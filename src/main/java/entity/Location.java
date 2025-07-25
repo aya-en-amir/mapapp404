@@ -10,12 +10,14 @@ public class Location {
     private String name;
     private float lat;
     private float lon;
+    private String address;
     private List<String> reviews = new ArrayList<>();
 
-    public Location(String name, float lat, float lon, List<String> reviews) {
+    public Location(String name, float lat, float lon, String address, List<String> reviews) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
+        this.address = address;
         this.reviews = reviews;
     }
 
@@ -43,11 +45,20 @@ public class Location {
         this.lon = lon;
     }
 
+    public void setAddress(String address) {this.address = address;}
+
+    public String getAddress() {return address;}
+
     public List<String> getReviews() {
         return reviews;
     }
 
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s\nLat: %f\nLon: %f\nReviews: %s\n", name, lat, lon, reviews.toString());
     }
 }
