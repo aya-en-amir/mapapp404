@@ -17,10 +17,10 @@ public class LoginView extends JPanel{
     private final JTextField usernameField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
-    private final JPasswordField postalCodeInputField = new JPasswordField(15);
+    private final JTextField postalCodeInputField = new JTextField(15);
     private final JLabel postalCodeErrorField = new JLabel();
 
-    private final JPasswordField vibeField = new JPasswordField(15);
+    private final JTextField vibeField = new JTextField(15);
     private final JLabel vibeFieldError = new JLabel();
 
     private final JButton findLocationButton;
@@ -57,8 +57,8 @@ public class LoginView extends JPanel{
 
         findLocationButton.addActionListener(e -> {
             String username = usernameField.getText();
-            String postalCode = new String(postalCodeInputField.getPassword());
-            String vibe = new String(vibeField.getPassword());
+            String postalCode = postalCodeInputField.getText();
+            String vibe = vibeField.getText();
 
             if (username.isEmpty() || postalCode.isEmpty() || vibe.isEmpty()) {
                 JOptionPane.showMessageDialog(this,

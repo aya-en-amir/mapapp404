@@ -13,11 +13,11 @@ public class Location {
     private String address;
     private List<String> reviews = new ArrayList<>();
 
-    public Location(String name, float lat, float lon, String address, List<String> reviews) {
+    public Location(String name, float lat, float lon, List<String> reviews) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
-        this.address = address;
+        this.address = null;
         this.reviews = reviews;
     }
 
