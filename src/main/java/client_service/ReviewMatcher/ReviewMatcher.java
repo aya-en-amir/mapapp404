@@ -27,4 +27,5 @@ public class ReviewMatcher {
         }
         return (totalScore / keywords.size()) * 100;
     }
+
 }
