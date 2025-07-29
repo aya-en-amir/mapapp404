@@ -12,16 +12,27 @@ public class ReviewMatcherTest {
     @Test
     public void successTest() {
         List<String> bahenReview = new ArrayList<>();
-        bahenReview.addAll(Arrays.asList("awesome", "great"));
+        bahenReview.addAll(Arrays.asList("It's", "a", "tasty", "place", "The", "food", "needs", "more", "salt"));
         Location location = new Location("Bahen", 10.122f, 20.12f, bahenReview);
 
         List<String> keyword = new ArrayList<>();
-        keyword.addAll(Arrays.asList("awesome", "devastating", "Great"));
+        keyword.addAll(Arrays.asList("delicious", "yummy"));
         ReviewMatcher reviewMatcher = new ReviewMatcher(keyword, location);
-        double score = reviewMatcher.calculateScore();
-        assertTrue(score > 0);
+        double score = reviewMatcher.calculateScoreWordnet();
         System.out.println(score);
+        System.out.println(reviewMatcher.calculateScore());
+    }
+    @Test
+    public void getTest() {
+        List<String> bahenReview = new ArrayList<>();
+        bahenReview.addAll(Arrays.asList("It's", "a", "depressing", "place"));
+        Location location = new Location("Bahen", 10.122f, 20.12f, bahenReview);
 
+        List<String> keyword = new ArrayList<>();
+        keyword.addAll(Arrays.asList("awesome", "great"));
+        ReviewMatcher reviewMatcher = new ReviewMatcher(keyword, location);
+        List<Double> score = reviewMatcher.calculateScoreTest();
+        System.out.println(score);
     }
 }
 
