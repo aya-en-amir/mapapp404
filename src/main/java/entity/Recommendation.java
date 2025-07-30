@@ -15,10 +15,15 @@ public class Recommendation {
         this.score = score;
     }
 
+    public Recommendation(List<Location> location) {
+    }
+
     public Location getLocation() {
         return location;
     }
-}
+
+    public List<Location> getLocations() { return List.of(location); }
+
     public double getScore() {
         return score;
     }
