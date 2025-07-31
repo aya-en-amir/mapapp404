@@ -40,7 +40,8 @@ As a result, there are three landing pages; one for the user to input all inform
 <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
 
 ### Landing Page 2 (Recommendation Screen): 
-<img width="837" height="326" alt="image" src="https://github.com/user-attachments/assets/b20fea31-5bff-4bd7-9044-fbe837cd69d5" />
+<img width="665" height="358" alt="image" src="https://github.com/user-attachments/assets/4c03451e-e9f0-400e-b08c-80ca88c6abe1" />
+
 
 ### Landing Page 3 (Map View Screen): 
 <img width="1059" height="576" alt="image" src="https://github.com/user-attachments/assets/c9d8ee2a-c535-4c95-b19f-8770fb65a677" />
