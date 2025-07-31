@@ -44,7 +44,8 @@ As a result, there are three landing pages; one for the user to input all inform
 
 
 ### Landing Page 3 (Map View Screen): 
-<img width="1059" height="576" alt="image" src="https://github.com/user-attachments/assets/c9d8ee2a-c535-4c95-b19f-8770fb65a677" />
+<img width="1054" height="508" alt="image" src="https://github.com/user-attachments/assets/a38c41c7-0ccf-4d38-8516-271ae1c7ecbc" />
+
 
 
 
