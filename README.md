@@ -14,6 +14,8 @@ As a result, there are three landing pages; one for the user to input all inform
 # Table of Contents
 
 
+# Installation Instructions
+
 
 # Clean Architecture and SOLID Principles
 
@@ -24,8 +26,18 @@ Our program uses 3 external APIs:
   - Google Map API (for the Google review a location proximity search).
   - JXMap API (for the map display with the respective locations).
 
+# License
 
 # Visual Output
 
 (1) <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
+
+# Feedback
+Rules and guidlines for valid feedback include, 
+
+
+# Contributions
+If you or your team would like to contribute to our project, please begin by
+
+
 
