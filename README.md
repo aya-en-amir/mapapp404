@@ -21,7 +21,7 @@ As a result, there are three landing pages; one for the user to input all inform
 ### [Contributions](#contributions)
 
 
-# Installation Instructions
+# [Installation Instructions](#installation-instructions)
 
 
 # Clean Architecture and SOLID Principles
