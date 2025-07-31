@@ -46,7 +46,7 @@ public class User {
         this.sessions.add(session);
     }
 
-    public void addSessions(List<UserSession> sessions){
+    public void addSessions(List<UserSession> sessions) {
         for (UserSession userSession : sessions) {
             this.sessions.add(userSession);
         }

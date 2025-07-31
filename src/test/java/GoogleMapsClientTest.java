@@ -12,7 +12,7 @@ public class GoogleMapsClientTest {
         final int radiusInMeters = 5000;
         final String postalCode = "M5S 2E4";
 
-        final GoogleMapsClient client = new GoogleMapsClient(apiKey, radiusInMeters);
+        final GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
 
         final List<Location> locations = client.serveLocations(postalCode);
         if (locations == null || locations.isEmpty()) {

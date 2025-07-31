@@ -5,18 +5,26 @@ import java.util.List;
 /**
  * A class representing a list of recommended locations.
  */
+
 public class Recommendation {
-    private List<Location> locations;
+    private Location location;
+    private double score;
 
-    public Recommendation(List<Location> locations) {
-        this.locations = locations;
+    public Recommendation(Location location, double score) {
+        this.location = location;
+        this.score = score;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public Recommendation(List<Location> location) {
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public Location getLocation() {
+        return location;
+    }
+
+    public List<Location> getLocations() { return List.of(location); }
+
+    public double getScore() {
+        return score;
     }
 }
