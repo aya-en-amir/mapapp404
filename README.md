@@ -23,4 +23,5 @@ Our program uses 3 external APIs:
 
 # Visual Output:
 
+(1) <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
 
