@@ -1,5 +1,5 @@
 # Team Name: 404 Team Not Found
-
+Authors: 
 
 # Overview
 Our program works by using user input to output a list of top locations as well as a map to pinpoint respective locations.
@@ -9,6 +9,10 @@ When our program is run, it takes you to the first landing page (the main page).
 As a result, there are three landing pages; one for the user to input all information, one to display the top 5 recommendations, and one to display the map.
 
 # Purpose
+
+
+# Table of Contents
+
 
 
 # Clean Architecture and SOLID Principles
