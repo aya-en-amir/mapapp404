@@ -12,6 +12,13 @@ As a result, there are three landing pages; one for the user to input all inform
 
 
 # Table of Contents
+### [Installation Instructions]()
+### [Clean Architecture and SOLID Principles]()
+### [External APIs]()
+### [License]()
+### [Visual Output]()
+### [Feedback]()
+### [Contributions]()
 
 
 # Installation Instructions
@@ -38,5 +45,6 @@ Rules and guidelines for valid feedback include,
 
 # Contributions
 If you or your team would like to contribute to our project, please begin by
+
 
 
