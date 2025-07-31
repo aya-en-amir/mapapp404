@@ -12,13 +12,13 @@ As a result, there are three landing pages; one for the user to input all inform
 
 
 # Table of Contents
-### [Installation Instructions]()
-### [Clean Architecture and SOLID Principles]()
-### [External APIs]()
-### [License]()
-### [Visual Output]()
-### [Feedback]()
-### [Contributions]()
+### [Installation Instructions](#installation-instructions)
+### [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
+### [External APIs](#external-apis)
+### [License](#license)
+### [Visual Output](#visual-output)
+### [Feedback](#feedback)
+### [Contributions](#contributions)
 
 
 # Installation Instructions
