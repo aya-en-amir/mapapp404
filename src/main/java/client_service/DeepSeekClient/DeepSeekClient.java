@@ -71,10 +71,13 @@ public class DeepSeekClient implements VibeExtractorInterface {
 //            Files.write(Paths.get(JSON_FILE_PATH), response.body().getBytes());
 //            System.out.println("test.json edited with the response - check it out!");
             // update responseList
+
             ArrayList<String> returnList = extractFromJSON(response.body());
+            System.out.println(response.body());
             System.out.println("Response is a success! \n" + returnList);
             return returnList;
         }
+
         catch(IOException e){
             System.out.println("IO Exception: " + e.getMessage());
             // returns empty responseList
