@@ -38,6 +38,8 @@ As a result, there are three landing pages; one for the user to input all inform
 # Visual Output
 ### Landing Page 1 (Login Screen): 
 <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
+<img width="837" height="326" alt="image" src="https://github.com/user-attachments/assets/b20fea31-5bff-4bd7-9044-fbe837cd69d5" />
+
 
 # Feedback
 Rules and guidelines for valid feedback include,
