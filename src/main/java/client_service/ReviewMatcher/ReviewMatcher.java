@@ -12,6 +12,7 @@ import edu.uniba.di.lacam.kdde.lexical_db.MITWordNet;
 import edu.uniba.di.lacam.kdde.ws4j.similarity.Path;
 import edu.uniba.di.lacam.kdde.ws4j.similarity.WuPalmer;
 import edu.uniba.di.lacam.kdde.ws4j.util.WS4JConfiguration;
+
 import entity.Location;
 
 public class ReviewMatcher {
@@ -28,6 +29,7 @@ public class ReviewMatcher {
         return String.join(" ", location.getReviews());
 
     }
+
     public double calculateScore() {
         double totalScore = 0.0;
 
@@ -63,4 +65,5 @@ public class ReviewMatcher {
         }
         return (totalScore / keywords.size()) * 100;
     }
+    
 }

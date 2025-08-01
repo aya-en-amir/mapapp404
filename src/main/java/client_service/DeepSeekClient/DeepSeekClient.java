@@ -1,5 +1,6 @@
 package client_service.DeepSeekClient;
 
+import entity.Location;
 import interface_service.VibeExtractorInterface;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -17,26 +18,40 @@ import org.json.JSONException;
 import java.util.Arrays;
 import java.util.List;
 
-public class DeepSeekClient implements VibeExtractorInterface {
+public class DeepSeekClient implements LocationGiverInterface {
     private String userPrompt;
     private String API_KEY = "";
     private String endpoint = "";
+    private List<Location> location;
     String JSON_FILE_PATH = "test.json";
     int MESSAGE_INDEX = 4;
     int CONTENT_INDEX = 1;
 
-    public DeepSeekClient(String prompt){
+    public DeepSeekClient(String prompt, List<Location> locations) {
         this.userPrompt = prompt;
         Dotenv dotenv = Dotenv.load();
         this.API_KEY = dotenv.get("DEEPSEEK_API_KEY");
         this.endpoint = dotenv.get("DEEPSEEK_ENDPOINT");
+        this.location = locations;
     }
 
     public String getUserPrompt(){
+
         return userPrompt;
     }
 
+    public String convertToString() {
+        StringBuilder locationsStrVer = new StringBuilder();
+        for (Location spot : this.location) {
+            locationsStrVer.append(spot.getName() + ",");
+            locationsStrVer.append(spot.getAddress() + ",");
+            locationsStrVer.append(spot.getReviews() + ",");
+        }
+        return locationsStrVer.toString();
+    }
+
     public String getAPI_KEY(){
+
         return API_KEY;
     }
 
@@ -45,7 +60,7 @@ public class DeepSeekClient implements VibeExtractorInterface {
     }
 
     @Override
-    public ArrayList<String> extractKeywords() {
+    public ArrayList<String> giveLocations() {
         ArrayList<String> responseList = new ArrayList<>();
         try{
             String requestBody = "{\n" +
@@ -53,8 +68,9 @@ public class DeepSeekClient implements VibeExtractorInterface {
                     "          \"messages\": [\n" +
                     "            {\"role\": \"user\", " +
                     "            \"content\": " +
-                    "            \"Extract the main keywords and sentiment (sentiment can only be POSITIVE or NEGATIVE) from the user prompt. User prompt: " + getUserPrompt() + ". " + "Generate JUST a list (i.e 1. <insert synonym 1> ...) of " +
-                    " 15 SYNONYMS for these words IF AND ONLY IF sentiment is POSITIVE. Otherwise if the sentiment is NEGATIVE, generate JUST a list (i.e 1. <insert synonym 1> ...) of 15 ANTONYMS. Make sure the words in the list are frequently used in a Google review for a location. Structure should follow this template EXACTLY and include NOTHING ELSE so I can parse the words in the curly braces: {<generated word 1>, ... <generated word n>, }" +
+                    "            \"Based on this expression:" + getUserPrompt() +
+                    "Find me 5 places that best represent what I'm feeling from these places" +
+                    convertToString() + "Make sure to give me in this format : {address name : address}"
                     "            \"}\n" +
                     "          ]\n" +
                     "        }";

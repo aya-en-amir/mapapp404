@@ -58,8 +58,11 @@ public class GoogleMapsClient implements LocationFinder {
             final float startLongitude = startCoordinates[1];
 
             final List<JSONObject> rawPlaces = nearbyLocations(startLatitude, startLongitude);
+            System.out.println(rawPlaces);
             for (JSONObject rawLocation : rawPlaces) {
-                locations.add(initializeLocation(rawLocation));
+                Location loc = initializeLocation(rawLocation);
+                System.out.println(loc);
+                locations.add(loc);
             }
         }
         return locations;
@@ -77,8 +80,11 @@ public class GoogleMapsClient implements LocationFinder {
                 "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=%d&key=%s",
                 lat, lon, meterRadius, apiKey
         );
-
         final JSONObject response = getJsonResponse(url);
+        if (response.has("status") && response.getString("status").equals("OK")) {
+            throw new InvalidPostalCodeException("API issue.");
+        }
+        System.out.println(response);
         final List<JSONObject> nearbyPlaces = toList(response.getJSONArray("results"));
         for (JSONObject place : nearbyPlaces) {
             String placeId = place.optString("place_id", null);
@@ -108,9 +114,11 @@ public class GoogleMapsClient implements LocationFinder {
      * @return a Location object for the same location
      */
     public Location initializeLocation(JSONObject rawLocation) {
+        System.out.println(rawLocation);
         final String name = findName(rawLocation);
         final float[] coordinates = findLatLon(rawLocation);
         final List<String> reviews = findReviews(rawLocation);
+        System.out.println(name + coordinates + reviews);
         return new Location(name, coordinates[0], coordinates[1], reviews);
     }
 

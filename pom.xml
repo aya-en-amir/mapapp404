@@ -10,6 +10,11 @@
 
     <repositories>
         <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -66,38 +71,6 @@
             <groupId>com.github.dmeoli</groupId>
             <artifactId>WS4J</artifactId>
             <version>master</version>
-        </dependency>
-        <dependency>
-            <groupId>de.sciss</groupId>
-            <artifactId>ws4j</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>de.sciss</groupId>
-            <artifactId>ws4j</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>uk.ac.gate.plugins</groupId>
-            <artifactId>wordnet</artifactId>
-            <version>8.5</version>
-        </dependency>
-        <dependency>
-            <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-corenlp</artifactId>
-            <version>4.5.10</version>
-        </dependency>
-        <dependency>
-            <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-corenlp</artifactId>
-            <version>4.5.10</version>
-            <classifier>models</classifier>
-        </dependency>
-        <dependency>
-            <groupId>edu.stanford.nlp</groupId>
-            <artifactId>stanford-corenlp</artifactId>
-            <version>4.5.10</version>
-            <classifier>models-english</classifier>
         </dependency>
     </dependencies>
 
