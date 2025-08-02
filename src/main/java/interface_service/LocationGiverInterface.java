@@ -2,8 +2,8 @@ package interface_service;
 
 import java.util.ArrayList;
 
-public interface RecommendLocation {
-    ArrayList<String> giveLocations();
+public interface LocationGiverInterface {
+    ArrayList<String> giveLocation();
 
-    ArrayList<String> extractFromJson(String jsonResponse);
+    ArrayList<String> extractFromJSON(String jsonResponse);
 }

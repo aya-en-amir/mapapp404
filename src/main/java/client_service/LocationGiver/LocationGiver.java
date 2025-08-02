@@ -1,8 +1,10 @@
-package client_service.DeepSeekClient;
+package client_service.LocationGiver;
 
 import entity.Location;
-import interface_service.VibeExtractorInterface;
+import interface_service.LocationGiverInterface;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,47 +13,28 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONException;
 import java.util.Arrays;
 import java.util.List;
 
-public class DeepSeekClient implements LocationGiverInterface {
+public class LocationGiver implements LocationGiverInterface {
     private String userPrompt;
     private String API_KEY = "";
     private String endpoint = "";
-    private List<Location> location;
-    String JSON_FILE_PATH = "test.json";
-    int MESSAGE_INDEX = 4;
-    int CONTENT_INDEX = 1;
+    private List<Location> locations;
 
-    public DeepSeekClient(String prompt, List<Location> locations) {
+    public LocationGiver(String prompt, List<Location> locations) {
         this.userPrompt = prompt;
         Dotenv dotenv = Dotenv.load();
         this.API_KEY = dotenv.get("DEEPSEEK_API_KEY");
         this.endpoint = dotenv.get("DEEPSEEK_ENDPOINT");
-        this.location = locations;
+        this.locations = locations;
     }
 
     public String getUserPrompt(){
-
         return userPrompt;
     }
 
-    public String convertToString() {
-        StringBuilder locationsStrVer = new StringBuilder();
-        for (Location spot : this.location) {
-            locationsStrVer.append(spot.getName() + ",");
-            locationsStrVer.append(spot.getAddress() + ",");
-            locationsStrVer.append(spot.getReviews() + ",");
-        }
-        return locationsStrVer.toString();
-    }
-
     public String getAPI_KEY(){
-
         return API_KEY;
     }
 
@@ -59,52 +42,66 @@ public class DeepSeekClient implements LocationGiverInterface {
         return endpoint;
     }
 
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public String convertLocToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Location location : locations) {
+            sb.append(", ");
+            sb.append(location.toString());
+        }
+        return sb.toString();
+    }
+
     @Override
-    public ArrayList<String> giveLocations() {
-        ArrayList<String> responseList = new ArrayList<>();
+    public ArrayList<String> giveLocation() {
+        ArrayList<String> locationGiver = new ArrayList<>();
         try{
-            String requestBody = "{\n" +
+            String request = "{\n" +
                     "          \"model\": \"deepseek/deepseek-chat-v3-0324:free\",\n" +
                     "          \"messages\": [\n" +
                     "            {\"role\": \"user\", " +
                     "            \"content\": " +
-                    "            \"Based on this expression:" + getUserPrompt() +
-                    "Find me 5 places that best represent what I'm feeling from these places" +
-                    convertToString() + "Make sure to give me in this format : {address name : address}"
+                    "            \"User prompt: " + "{" + getUserPrompt() + "}" +
+                    "               Find 5 suitable places that matches the user's prompt " +
+                    "               from these locations: " + "{" + convertLocToString() + "}" +
+                    "               The generated list of location must follow this following template " +
+                    "               (i.e 1. <insert location 1> ...) " +
+                    "               Structure should follow this template EXACTLY and include NOTHING ELSE so " +
+                    "               I can parse the words in the curly braces: " +
+                    "               {<generated word 1>, ... <generated word n>, }" +
                     "            \"}\n" +
                     "          ]\n" +
                     "        }";
-//            System.out.println("Loaded API Key: " + getAPI_KEY());
-            HttpRequest request = HttpRequest.newBuilder()
+            HttpRequest httpRequest = HttpRequest.newBuilder()
                     .uri(URI.create(getEndpoint()))
                     .header("Authorization", "Bearer " + getAPI_KEY())
-                    .POST(BodyPublishers.ofString(requestBody))
+                    .POST(BodyPublishers.ofString(request))
                     .build();
             HttpClient client = HttpClient.newHttpClient();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-            //editing JSON file to see responses (in an organized format)
-//            Files.write(Paths.get(JSON_FILE_PATH), response.body().getBytes());
-//            System.out.println("test.json edited with the response - check it out!");
-            // update responseList
             ArrayList<String> returnList = extractFromJSON(response.body());
             System.out.println("Response is a success! \n" + returnList);
             return returnList;
         }
         catch(IOException e){
             System.out.println("IO Exception: " + e.getMessage());
+            return locationGiver;
             // returns empty responseList
-            return responseList;
         }
 
         catch(InterruptedException e){
             System.out.println("Interrupted: " + e.getMessage());
+            return locationGiver;
             // returns empty responseList
-            return responseList;
         }
 
     }
 
+    @Override
     public ArrayList<String> extractFromJSON(String jsonResponse){
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray choices = jsonObject.getJSONArray("choices");
@@ -117,8 +114,5 @@ public class DeepSeekClient implements LocationGiverInterface {
         String response = content.substring(startCurly+1, endCurly);
         ArrayList<String> responseList = new ArrayList<>(Arrays.asList(response.split(", ")));
         return responseList;
-
-
-
     }
 }
