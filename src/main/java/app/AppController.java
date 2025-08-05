@@ -13,11 +13,11 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.util.List;
 
 public class AppController {
-    public List<Location> getRecommendations(String prompt) {
+    public List<Recommendation> getRecommendations(String prompt, String postalCode) {
         try {
             LLMClient llmClient = new DeepSeekClient();
             final int radiusInMeters = 5000;
-            final String postalCode = "M5S 2E4";
+//            final String postalCode = "M5S 2E4";
 
             GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
             List<Location> locations = client.serveLocations(postalCode);
@@ -26,8 +26,7 @@ public class AppController {
 
             RecommenderInterface recommender = new Recommender(prompt, locations, llmClient);
             Recommendation recommendation = recommender.recommend();
-
-            return recommendation.getLocations();
+            return List.of(recommendation);
 
         } catch (Exception e) {
             e.printStackTrace();

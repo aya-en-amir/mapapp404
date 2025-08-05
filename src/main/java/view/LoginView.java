@@ -1,13 +1,9 @@
 package view;
 
 import app.AppController;
-import entity.Location;
-import entity.Recommendation;
-import interface_service.InvalidPostalCodeException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * The View for when the user is logging into the program.
@@ -73,17 +69,11 @@ public class LoginView extends JPanel{
             }
 
             AppController controller = new AppController();
-//            controller.getRecommendationsCosineSimilarity(vibe);
-            Recommendation recommendation = new Recommendation(controller.getRecommendationLocationGiver(vibe));
-            RecommendationView recommendationView = new RecommendationView(recommendation);
-
-
-
-
+            RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
+            recommendationView.setVisible(true);
         });
     }
 
 
 
 }
-
