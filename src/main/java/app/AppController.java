@@ -22,8 +22,6 @@ public class AppController {
             GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
             List<Location> locations = client.serveLocations(postalCode);
 
-            if (locations == null || locations.isEmpty()) return List.of();
-
             RecommenderInterface recommender = new Recommender(prompt, locations, llmClient);
             Recommendation recommendation = recommender.recommend();
 
