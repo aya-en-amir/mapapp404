@@ -1,9 +1,12 @@
 package view;
 
 import app.AppController;
+import entity.Location;
+import interface_service.InvalidPostalCodeException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * The View for when the user is logging into the program.
@@ -69,7 +72,13 @@ public class LoginView extends JPanel{
             }
 
             AppController controller = new AppController();
-            controller.getRecommendations(vibe);
+//            controller.getRecommendationsCosineSimilarity(vibe);
+            controller.getRecommendationLocationGiver(vibe);
+
+
+
+
+
         });
     }
 
