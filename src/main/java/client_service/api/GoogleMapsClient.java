@@ -24,16 +24,15 @@ import java.util.List;
 public class GoogleMapsClient implements LocationFinder {
     private final String apiKey;
     private final int meterRadius;
-    private static List<Location> backupLocations;
+    private static List<Location> backupLocations = generateBackupLocations();
 
     public GoogleMapsClient(int meterRadius) {
         final Dotenv dotenv = Dotenv.load();
         this.apiKey = dotenv.get("GOOGLE_MAPS_API_KEY");
         this.meterRadius = meterRadius;
-        this.backupLocations = generateBackupLocations();
     }
 
-    private List<Location> generateBackupLocations() {
+    private static List<Location> generateBackupLocations() {
         Location location1 = new Location("The Yorkville Royal Sonesta Hotel Toronto", (float) 43.653225,
                 (float) -79.38319, new ArrayList<>(), "220 Bloor St W, Toronto, ON M5S 3B7, Canada");
 
