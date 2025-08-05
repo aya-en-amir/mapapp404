@@ -13,12 +13,12 @@ public class Location {
     private String address;
     private List<String> reviews = new ArrayList<>();
 
-    public Location(String name, float lat, float lon, List<String> reviews) {
+    public Location(String name, float lat, float lon, List<String> reviews, String address) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
-        this.address = null;
         this.reviews = reviews;
+        this.address = address;
     }
 
     public String getName() {
@@ -59,6 +59,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nLat: %f\nLon: %f\nReviews: %s\n", name, lat, lon, reviews.toString());
+        return String.format("Name: %s\nLat: %f\nLon: %s\nAddress: %s\nReviews: %s\n", name, lat, lon, address,
+                reviews.toString());
     }
 }

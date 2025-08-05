@@ -99,7 +99,7 @@ public class GoogleMapsClient implements LocationFinder {
 
     private JSONObject fetchDetails(String placeId) throws Exception {
         final String url = String.format(
-                "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,geometry,reviews&key=%s",
+                "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,geometry,formatted_address,reviews&key=%s",
                 placeId, apiKey
         );
         JSONObject response = getJsonResponse(url);
@@ -116,7 +116,8 @@ public class GoogleMapsClient implements LocationFinder {
         final String name = findName(rawLocation);
         final float[] coordinates = findLatLon(rawLocation);
         final List<String> reviews = findReviews(rawLocation);
-        return new Location(name, coordinates[0], coordinates[1], reviews);
+        final String address = findAddress(rawLocation);
+        return new Location(name, coordinates[0], coordinates[1], reviews, address);
     }
 
     /**
@@ -153,6 +154,14 @@ public class GoogleMapsClient implements LocationFinder {
             }
         }
         return reviews;
+    }
+
+    private String findAddress(JSONObject rawLocation) {
+        String address = "";
+        if (rawLocation.has("formatted_address")) {
+            address = rawLocation.optString("formatted_address", "Address not available");
+        }
+        return address;
     }
 
     /**
