@@ -24,48 +24,78 @@ import java.util.List;
 public class GoogleMapsClient implements LocationFinder {
     private final String apiKey;
     private final int meterRadius;
+    private static List<Location> backupLocations;
 
     public GoogleMapsClient(int meterRadius) {
         final Dotenv dotenv = Dotenv.load();
         this.apiKey = dotenv.get("GOOGLE_MAPS_API_KEY");
         this.meterRadius = meterRadius;
+        this.backupLocations = generateBackupLocations();
+    }
+
+    private List<Location> generateBackupLocations() {
+        Location location1 = new Location("The Yorkville Royal Sonesta Hotel Toronto", (float) 43.653225,
+                (float) -79.38319, new ArrayList<>(), "220 Bloor St W, Toronto, ON M5S 3B7, Canada");
+
+        Location location2 = new Location("Madison Manor Boutique Hotel", (float) 43.668041,
+                (float) -79.4035, new ArrayList<>(), "20 Madison Ave, Toronto, ON M5R 2S1, Canada");
+
+        Location location3 = new Location("HOTEL OCHO", (float) 43.650005,
+                (float) -79.39639, new ArrayList<>(), "195 Spadina Ave., Toronto, ON M5T 2C3, Canada");
+
+        Location location4 = new Location("Art Gallery of Ontario", (float) 43.653606,
+                (float) -79.39251, new ArrayList<>(), "317 Dundas St W, Toronto, ON M5T 1G4, Canada");
+
+        Location location5 = new Location("Royal Ontario Museum", (float) 43.667709,
+                (float) -79.394775, new ArrayList<>(), "100 Queens Park, Toronto, ON M5S 2C6, Canada");
+
+        List<Location> backupLocations = new ArrayList<>();
+        backupLocations.add(location1);
+        backupLocations.add(location2);
+        backupLocations.add(location3);
+        backupLocations.add(location4);
+        backupLocations.add(location5);
+        return backupLocations;
     }
 
     @Override
     public List<Location> serveLocations(String postalCode) throws Exception {
-        final String encodedPostal = URLEncoder.encode(postalCode + ", Canada", "UTF-8");
-        final String geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="
-                + encodedPostal + "&key=" + apiKey;
-        final JSONObject geoResponse = getJsonResponse(geocodeUrl);
-        final String status = geoResponse.getString("status");
+        try {
+            final String encodedPostal = URLEncoder.encode(postalCode + ", Canada", "UTF-8");
+            final String geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address="
+                    + encodedPostal + "&key=" + apiKey;
+            final JSONObject geoResponse = getJsonResponse(geocodeUrl);
+            final String status = geoResponse.getString("status");
 
-        if (status.equals("ZERO_RESULTS")) {
-            throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
-        }
-        else if (!status.equals("OK")) {
-            throw new APIException("An error occurred with Google Maps.");
-        }
-
-        final JSONArray results = geoResponse.getJSONArray("results");
-
-        List<Location> locations = new ArrayList<>();
-
-        if (results.isEmpty()) {
-            locations = null;
-        }
-        else {
-            final JSONObject startLocation = results.getJSONObject(0);
-            final float[] startCoordinates = findLatLon(startLocation);
-            final float startLatitude = startCoordinates[0];
-            final float startLongitude = startCoordinates[1];
-
-            final List<JSONObject> rawPlaces = nearbyLocations(startLatitude, startLongitude);
-            for (JSONObject rawLocation : rawPlaces) {
-                Location loc = initializeLocation(rawLocation);
-                locations.add(loc);
+            if (status.equals("ZERO_RESULTS")) {
+                throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
+            } else if (!status.equals("OK")) {
+                throw new APIException("An error occurred with Google Maps in finding your location.");
             }
+
+            final JSONArray results = geoResponse.getJSONArray("results");
+
+            List<Location> locations = new ArrayList<>();
+
+            if (results.isEmpty()) {
+                locations = null;
+            } else {
+                final JSONObject startLocation = results.getJSONObject(0);
+                final float[] startCoordinates = findLatLon(startLocation);
+                final float startLatitude = startCoordinates[0];
+                final float startLongitude = startCoordinates[1];
+
+                final List<JSONObject> rawPlaces = nearbyLocations(startLatitude, startLongitude);
+                for (JSONObject rawLocation : rawPlaces) {
+                    Location loc = initializeLocation(rawLocation);
+                    locations.add(loc);
+                }
+            }
+            return locations;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return backupLocations;
         }
-        return locations;
     }
 
     /**
@@ -82,7 +112,7 @@ public class GoogleMapsClient implements LocationFinder {
         );
         final JSONObject response = getJsonResponse(url);
         if (response.has("status") && !response.getString("status").equals("OK")) {
-            throw new InvalidPostalCodeException("API issue.");
+            throw new InvalidPostalCodeException("An error occurred with Google Maps in finding nearby locations.");
         }
         final List<JSONObject> nearbyPlaces = toList(response.getJSONArray("results"));
         for (JSONObject place : nearbyPlaces) {
