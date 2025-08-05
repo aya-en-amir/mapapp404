@@ -2,6 +2,7 @@ package view;
 
 import app.AppController;
 import entity.Location;
+import entity.Recommendation;
 import interface_service.InvalidPostalCodeException;
 
 import javax.swing.*;
@@ -73,8 +74,8 @@ public class LoginView extends JPanel{
 
             AppController controller = new AppController();
 //            controller.getRecommendationsCosineSimilarity(vibe);
-            controller.getRecommendationLocationGiver(vibe);
-
+            Recommendation recommendation = new Recommendation(controller.getRecommendationLocationGiver(vibe));
+            RecommendationView recommendationView = new RecommendationView(recommendation);
 
 
 

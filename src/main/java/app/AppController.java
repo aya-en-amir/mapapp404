@@ -57,6 +57,7 @@ public class AppController {
             if (locations == null || locations.isEmpty()) return List.of();
 
             LocationGiver recommendedLocations = new LocationGiver(prompt, locations);
+            System.out.println(recommendedLocations.getLocations());
             return recommendedLocations.getLocations();
         }
         catch (Exception e) {
