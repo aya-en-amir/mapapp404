@@ -16,6 +16,7 @@ public class MapView extends JFrame {
 
     public MapView(List<Location> locations) {
         setTitle("Map View");
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
