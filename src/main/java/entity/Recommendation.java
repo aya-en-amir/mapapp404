@@ -14,5 +14,4 @@ public class Recommendation {
     }
 
     public List<Location> getLocations() { return locations; }
-
 }
