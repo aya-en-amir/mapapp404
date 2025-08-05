@@ -1,7 +1,9 @@
-package client_service.GoogleMapsClient;
+package client_service.api;
 
 import entity.Location;
-import interface_service.InvalidPostalCodeException;
+
+import exceptions.APIException;
+import exceptions.InvalidPostalCodeException;
 import interface_service.LocationFinder;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,7 +43,7 @@ public class GoogleMapsClient implements LocationFinder {
             throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
         }
         else if (!status.equals("OK")) {
-            throw new InvalidPostalCodeException("An error occurred with Google Maps.");
+            throw new APIException("An error occurred with Google Maps.");
         }
 
         final JSONArray results = geoResponse.getJSONArray("results");
@@ -58,10 +60,8 @@ public class GoogleMapsClient implements LocationFinder {
             final float startLongitude = startCoordinates[1];
 
             final List<JSONObject> rawPlaces = nearbyLocations(startLatitude, startLongitude);
-            System.out.println(rawPlaces);
             for (JSONObject rawLocation : rawPlaces) {
                 Location loc = initializeLocation(rawLocation);
-                System.out.println(loc);
                 locations.add(loc);
             }
         }
@@ -81,10 +81,9 @@ public class GoogleMapsClient implements LocationFinder {
                 lat, lon, meterRadius, apiKey
         );
         final JSONObject response = getJsonResponse(url);
-        if (response.has("status") && response.getString("status").equals("OK")) {
+        if (response.has("status") && !response.getString("status").equals("OK")) {
             throw new InvalidPostalCodeException("API issue.");
         }
-        System.out.println(response);
         final List<JSONObject> nearbyPlaces = toList(response.getJSONArray("results"));
         for (JSONObject place : nearbyPlaces) {
             String placeId = place.optString("place_id", null);
@@ -114,11 +113,9 @@ public class GoogleMapsClient implements LocationFinder {
      * @return a Location object for the same location
      */
     public Location initializeLocation(JSONObject rawLocation) {
-        System.out.println(rawLocation);
         final String name = findName(rawLocation);
         final float[] coordinates = findLatLon(rawLocation);
         final List<String> reviews = findReviews(rawLocation);
-        System.out.println(name + coordinates + reviews);
         return new Location(name, coordinates[0], coordinates[1], reviews);
     }
 

@@ -7,24 +7,11 @@ import java.util.List;
  */
 
 public class Recommendation {
-    private Location location;
-    private double score;
+    private List<Location> locations;
 
-    public Recommendation(Location location, double score) {
-        this.location = location;
-        this.score = score;
+    public Recommendation(List<Location> locations) {
+        this.locations = locations;
     }
 
-    public Recommendation(List<Location> location) {
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public List<Location> getLocations() { return List.of(location); }
-
-    public double getScore() {
-        return score;
-    }
+    public List<Location> getLocations() { return locations; }
 }
