@@ -1,4 +1,4 @@
-package interface_service;
+package exceptions;
 
 public class InvalidPostalCodeException extends Exception {
     public InvalidPostalCodeException(String message) {
