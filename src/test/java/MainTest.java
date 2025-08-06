@@ -1,10 +1,14 @@
 import app.AppController;
+import client_service.Recommendation.Recommender;
 import client_service.api.GoogleMapsClient;
+import entity.Location;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.Test;
 import view.LoginView;
+import view.RecommendationView;
 
 import javax.swing.*;
+import java.util.List;
 
 public class MainTest {
     @Test
@@ -17,10 +21,17 @@ public class MainTest {
         application.setVisible(true);
     }
 
-    public void recommendationViewTest(){
-        final int radiusInMeters = 5000;
-        GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        final String postalCode = "M5S2E4";
+    @Test
+    public void recommendationViewNonEmptyTest(){
+        AppController controller = new AppController();
+        String postalCode = "M5B 0A5";
+        String vibe = "happy";
+        RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
+        recommendationView.setVisible(true);
+    }
+
+    @Test
+    public void mapViewTest(){
 
     }
 }
