@@ -34,11 +34,6 @@ public class LocationDataAccessObject implements LocationDataAccessInterface {
     }
 
     @Override
-    public void setCurrentLocationName(String currentLocationName) {
-        this.currentLocation = currentLocationName;
-    }
-
-    @Override
     public List<Location> getAllLocations() {
         List<Location> result = new ArrayList<>();
         for (String locationName : locations.keySet()) {

@@ -63,7 +63,7 @@ public class Recommender implements RecommenderInterface {
         }
 
         for (String name : extractedNames) {
-            for (Location loc : locations) {
+            for (Location loc : getLocations()) {
                 if (loc.getName().equalsIgnoreCase(name)) {
                     result.add(loc);
                     break;

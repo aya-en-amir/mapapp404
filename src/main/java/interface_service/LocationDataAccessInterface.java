@@ -29,12 +29,6 @@ public interface LocationDataAccessInterface {
     String getCurrentLocationName();
 
     /**
-     * Setting the current lcoation.
-     * @param location the name of the current location
-     */
-    void setCurrentLocationName(String location);
-
-    /**
      * Get all locations.
      */
     List<Location> getAllLocations();
