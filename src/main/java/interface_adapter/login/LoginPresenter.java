@@ -1,10 +1,10 @@
 package interface_adapter.login;
 
-import interface_adapter.LoggedIn.LoggedInState;
-import interface_adapter.LoggedIn.LoggedInViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginOutputData;
+import interface_adapter.recommendation.RecommendationState;
+import interface_adapter.recommendation.RecommendationViewModel;
+import use_case.login.login.LoginOutputBoundary;
+import use_case.login.login.LoginOutputData;
 
 /**
  * The Presenter for the Login Use Case.
@@ -12,34 +12,21 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
+    private final RecommendationViewModel recommendationViewModel;
 
-    public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
+    public LoginPresenter(ViewManagerModel viewManagerModel, RecommendationViewModel viewRecoModel,
                           LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
+        this.recommendationViewModel = viewRecoModel;
     }
 
     @Override
     public void loadSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
-
-        final LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setState(loggedInViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void loadFailView(String error) {
-        final LoginState loginState = loginViewModel.getState();
-        loginState.setLoginError(error);
-        loginViewModel.firePropertyChanged();
     }
 }
