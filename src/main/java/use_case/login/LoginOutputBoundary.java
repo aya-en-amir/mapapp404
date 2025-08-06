@@ -11,7 +11,7 @@ public interface LoginOutputBoundary {
     void loadSuccessView(LoginOutputData outputData);
 
     /**
-     * Loads the failure view for login
+     * Load the failure view for the login
      * @param errorMessage the explanation of the failure
      */
     void loadFailView(String errorMessage);

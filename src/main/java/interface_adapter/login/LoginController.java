@@ -8,9 +8,9 @@ public class LoginController {
     public LoginController(LoginInputBoundary loginInputBoundary) {
         this.loginInputBoundary = loginInputBoundary;
     }
-    public void execute(String username, String vibe) {
+    public void execute(String username, String postalCode) {
         final LoginInputData loginInputData = new LoginInputData(
-                username, vibe);
+                username, postalCode);
 
         loginInputBoundary.execute(loginInputData);
     }

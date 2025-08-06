@@ -12,26 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginInputData {
-    private User user;
-    private UserSession userSession;
+    private String username;
+    private String postalCode;
 
     public LoginInputData(String username, String postalCode) {
-        this.user = new User(username, postalCode);
-        this.userSession = new UserSession(user);
-        ArrayList<UserSession> userSessionList = new ArrayList<>();
-        this.user.setSessions(userSessionList);
+        this.username = username;
+        this.postalCode = postalCode;
     }
 
     public String getUsername(){
-        return user.getUserName();
+        return username;
     }
     public String getPostalCode(){
-        return user.getPostalCode();
-    }
-    /*
-    should we have this?
-     */
-    public void addSession(UserSession userSession){
-        user.addSession(userSession);
+        return postalCode;
     }
 }

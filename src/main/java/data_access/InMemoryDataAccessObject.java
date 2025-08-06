@@ -43,6 +43,11 @@ public class InMemoryDataAccessObject implements LoginUserDataAccessInterface, L
     }
 
     @Override
+    public boolean existsByName(String username) {
+        return users.containsKey(username);
+    }
+
+    @Override
     public void saveLocation(Location location) {
         locations.put(location.getName(), location);
     }

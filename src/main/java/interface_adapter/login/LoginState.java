@@ -1,33 +1,31 @@
 package interface_adapter.login;
 
-/*
-State of the user login
- */
-
-import entity.User;
-
 public class LoginState {
-    private User user;
+    private String username = "";
     private String loginError;
-    private String userSessionID;
+    private String postalCode = "";
 
-    public String getUsername(){
-        return user.getUserName();
+    public String getUsername() {
+        return username;
     }
-    public String getPostalCode(){
-        return user.getPostalCode();
-    }
-    public void setUsername(String username){
-        this.user.setUserName(username);
-    }
-    public void setPostalCode(String postalCode){
-        this.user.setPostalCode(postalCode);
-    }
-    public void setLoginError(String loginError){
-        this.loginError = loginError;
-    }
-    public String getLoginError(){
+
+    public String getLoginError() {
         return loginError;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setLoginError(String usernameError) {
+        this.loginError = usernameError;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
 }
