@@ -1,4 +1,4 @@
-package use_case.login.recommendation;
+package use_case.recommendation;
 
 public class RecommendationOutputData {
 }

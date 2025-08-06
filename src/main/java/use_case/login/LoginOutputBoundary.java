@@ -1,4 +1,4 @@
-package use_case.login.login;
+package use_case.login;
 
 /**
  * Output boundary for login.
@@ -10,9 +10,4 @@ public interface LoginOutputBoundary {
      */
     void loadSuccessView(LoginOutputData outputData);
 
-    /**
-     * Load the failure view for the login
-     * @param errorMessage the explanation of the failure
-     */
-    void loadFailView(String errorMessage);
 }

@@ -1,10 +1,9 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.recommendation.RecommendationState;
 import interface_adapter.recommendation.RecommendationViewModel;
-import use_case.login.login.LoginOutputBoundary;
-import use_case.login.login.LoginOutputData;
+import use_case.login.LoginOutputBoundary;
+import use_case.login.LoginOutputData;
 
 /**
  * The Presenter for the Login Use Case.
