@@ -27,7 +27,7 @@ As a result, there are three landing pages; one for the user to input all inform
 # [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
 
 
-[# External APIs]()
+# [External APIs](#external-apis)
 ### Our program uses 3 external APIs:
 - DeepSeek API (for the synonym search).
 - Google Map API (for the Google review a location proximity search).
