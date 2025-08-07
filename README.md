@@ -33,9 +33,9 @@ As a result, there are three landing pages; one for the user to input all inform
 - Google Map API (for the Google review a location proximity search).
 - JXMap API (for the map display with the respective locations).
 
-# License
+# [License](#license)
 
-# Visual Output
+# [Visual Output](#visual-output)
 ### Landing Page 1 (Login Screen): 
 <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
 
@@ -49,11 +49,11 @@ As a result, there are three landing pages; one for the user to input all inform
 
 
 
-# Feedback
+# [Feedback](#feedback)
 Rules and guidelines for valid feedback include,
 
 
-# Contributions
+# [Contributions](#contributions)
 If you or your team would like to contribute to our project, please begin by
 
 
