@@ -16,12 +16,28 @@ As a result, there are three landing pages; one for the user to input all inform
 ### [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
 ### [External APIs](#external-apis)
 ### [License](#license)
-### [Visual Output](#visual-output)
+### [Features of the Software)](#features-of-the-software)
 ### [Feedback](#feedback)
 ### [Contributions](#contributions)
 
 
 # [Installation Instructions](#installation-instructions)
+
+Clear, accurate descriptions of how to install the project from start to finish
+ Mentions all packages and software which must be downloaded for the
+project to work
+ Provides links to any other packages or software needed
+ Includes all technical requirements and information needed to download
+each part of the project
+ Includes required versions for all packages or software needed
+ Explains if the software is only meant to be installed on a certain OS,
+hardware system, or otherwise (for example, Windows only or Mac only)
+ Mentions common issues in the installation process and how they can be
+overcome
+ Examples or tutorials (videos, screenshots, or code snippets) are used to
+clarify the steps for software installation
+ Examples or tutorials (videos, screenshots, or code snippets) are used to
+clarify the steps for overcoming common issues
 
 
 # [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
@@ -35,7 +51,7 @@ As a result, there are three landing pages; one for the user to input all inform
 
 # [License](#license)
 
-# [Visual Output](#visual-output)
+# [Features of the Software](#features-of-the-software)
 ### Landing Page 1 (Login Screen): 
 <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
 
