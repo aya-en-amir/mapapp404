@@ -40,8 +40,19 @@ This program is made to help user find locations tailored to their current emoti
 - DeepSeek endpoint : 
 - GoogleMaps API : link
 
-Then, an .env needs to be created. Right click on this directory as specified in the picture 
- 
+A .env needs to be created. Right click on this directory as specified in the picture.
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 24 53" src="https://github.com/user-attachments/assets/bb6d8b2b-1cd8-4950-b36f-47188d4848a0" />
+
+Click new and create a new file
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 29 59" src="https://github.com/user-attachments/assets/78aa8c22-7de9-4b00-acce-c94f78d7f51e" />
+
+
+Name the file as .env
+Then, type in the DeepSeek API and endpoint as well as the GoogleMaps API
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 27 13" src="https://github.com/user-attachments/assets/7b2a5521-c75b-4dd5-9c03-975b02e0036e" />
+
+
+
 
 # [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
 
