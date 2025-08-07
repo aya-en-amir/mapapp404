@@ -2,6 +2,8 @@ package interface_adapter.login;
 
 public class LoginState {
     private String username = "";
+    private String prompt = "";
+    private String postalCode = "";
     private String loginError;
 
     public String getUsername() {
@@ -18,5 +20,13 @@ public class LoginState {
 
     public void setLoginError(String usernameError) {
         this.loginError = usernameError;
+    }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
     }
 }

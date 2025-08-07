@@ -37,4 +37,5 @@ public interface LoginUserDataAccessInterface {
      * @param username the name of the current user
      */
     boolean existsByName(String username);
+
 }

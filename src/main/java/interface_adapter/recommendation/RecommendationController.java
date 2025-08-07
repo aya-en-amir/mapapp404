@@ -1,17 +1,18 @@
 package interface_adapter.recommendation;
 
+import use_case.recommendation.RecommendationInputBoundary;
 import use_case.recommendation.RecommendationInputData;
 import use_case.recommendation.RecommendationInteractor;
 
 public class RecommendationController {
-    final RecommendationInteractor recommendationInteractor;
+    final RecommendationInputBoundary recommendationInputBoundary;
 
-    public RecommendationController(RecommendationInteractor recommendationInteractor) {
-        this.recommendationInteractor = recommendationInteractor;
+    public RecommendationController(RecommendationInputBoundary recommendationInputBoundary) {
+        this.recommendationInputBoundary = recommendationInputBoundary;
     }
 
     public void execute(String prompt, String postalCode) {
         final RecommendationInputData inputData = new RecommendationInputData(prompt, postalCode);
-        recommendationInteractor.execute(inputData);
+        recommendationInputBoundary.execute(inputData);
     }
 }

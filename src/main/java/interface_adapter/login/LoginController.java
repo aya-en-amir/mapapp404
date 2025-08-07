@@ -9,8 +9,8 @@ public class LoginController {
     public LoginController(LoginInputBoundary loginInputBoundary) {
         this.loginInputBoundary = loginInputBoundary;
     }
-    public void execute(String username) {
-        final LoginInputData loginInputData = new LoginInputData(username);
+    public void execute(String username, String postalCode) {
+        final LoginInputData loginInputData = new LoginInputData(username, postalCode);
 
         loginInputBoundary.execute(loginInputData);
     }

@@ -1,15 +1,22 @@
 package view;
 
 import app.AppController;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginState;
+import interface_adapter.login.LoginViewModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * The View for when the user is logging into the program.
  */
 
-public class LoginView extends JPanel{
+public class LoginView  extends JPanel implements ActionListener, PropertyChangeListener {
 
     final String viewName = "log in";
     // private final LoginViewModel loginViewModel;
@@ -24,9 +31,14 @@ public class LoginView extends JPanel{
     private final JLabel vibeFieldError = new JLabel();
 
     private final JButton findLocationButton;
+    private final LoginViewModel loginViewModel;
+    private LoginController loginController;
+
 //    private final JButton cancel;
 
-    public LoginView() {
+    public LoginView(LoginViewModel loginViewModel) {
+        this.loginViewModel = loginViewModel;
+        this.loginViewModel.addPropertyChangeListener(this);
 
         final JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -67,13 +79,35 @@ public class LoginView extends JPanel{
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
-            AppController controller = new AppController();
-            controller.getRecommendations(vibe);
+            loginController.execute(username, postalCode);
+//            AppController controller = new AppController();
+//            controller.getRecommendations(vibe);
         });
     }
 
 
+    public String getViewName() {
+        return viewName;
+    }
 
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        final LoginState state = (LoginState) evt.getNewValue();
+        setFields(state);
+        usernameErrorField.setText(state.getLoginError());
+    }
+
+    private void setFields(LoginState state) {
+        usernameField.setText(state.getUsername());
+    }
 }
 
