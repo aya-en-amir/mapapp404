@@ -100,11 +100,6 @@ public class MainTest {
         gmaps.serveLocations("$%^()&");
     }
 
-//    @Test
-//    public void appControllerPostalCodeWrongFormatThrowsException() throws Exception {
-//        AppController controller = new AppController();
-//        controller.getRecommendations("happy", "aaa");
-//    }
 
     @Test
     public void deepSeekExceptionTest() throws exceptions.APIException{
