@@ -4,6 +4,7 @@ import client_service.api.DeepSeekClient;
 import client_service.api.GoogleMapsClient;
 import entity.Location;
 import exceptions.InvalidPostalCodeException;
+import interface_service.LLMClient;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
@@ -51,6 +52,16 @@ public class MainTest {
     public void recommendationViewEmptyTest(){
         RecommendationView recommendationView = new RecommendationView(List.of());
         recommendationView.setVisible(true);
+    }
+
+    @Test
+    public void recommenderTest(){
+        int radiusInMeters = 5000;
+        LLMClient ds = new DeepSeekClient();
+        GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
+        Recommender recommender = new Recommender("hello", gmaps.getBackupLocationsTesting(), ds);
+        assert recommender.getLocations() instanceof List;
+
     }
 
     @Test
