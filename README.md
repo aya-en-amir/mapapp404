@@ -57,7 +57,8 @@ Then, press apply.
 - GoogleMaps API : link
 
 A .env needs to be created. Right click on this directory as specified in the picture.
-<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 24 53" src="https://github.com/user-attachments/assets/bb6d8b2b-1cd8-4950-b36f-47188d4848a0" />
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 50 55" src="https://github.com/user-attachments/assets/1f6ab43c-3efb-4de6-be95-5ce08c955eb0" />
+
 
 Click new and create a new file
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 29 59" src="https://github.com/user-attachments/assets/78aa8c22-7de9-4b00-acce-c94f78d7f51e" />
