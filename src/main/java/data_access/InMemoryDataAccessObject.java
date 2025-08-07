@@ -2,15 +2,15 @@ package data_access;
 
 import entity.Location;
 import entity.User;
-import interface_service.LocationDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.recommendation.RecommendationDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryDataAccessObject implements LoginUserDataAccessInterface, LocationDataAccessInterface {
+public class InMemoryDataAccessObject implements LoginUserDataAccessInterface, RecommendationDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
     private final Map<String, Location> locations = new HashMap<>();

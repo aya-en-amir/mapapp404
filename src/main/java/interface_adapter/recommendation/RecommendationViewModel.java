@@ -1,4 +1,11 @@
 package interface_adapter.recommendation;
 
-public class RecommendationViewModel {
+import interface_adapter.ViewModel;
+
+public class RecommendationViewModel extends ViewModel<RecommendationState> {
+
+    public RecommendationViewModel() {
+        super("recommendation");
+        setState(new RecommendationState());
+    }
 }
