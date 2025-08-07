@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendationView extends JFrame {
+    public JButton viewMapButton;
 
     public RecommendationView(List<Recommendation> recommendations) {
 //        Font mainFont = new Font("SansSerif", Font.BOLD, 18);
@@ -30,13 +31,13 @@ public class RecommendationView extends JFrame {
         stringB.append("<html><body style='text-align:left;'>");
 
         if (recommendations.isEmpty()) {
-            stringB.append("<div style='font-size:16px;'><b>No locations found.</b></div>");
+            stringB.append("<div style='font-size:16px;'><b>No locations found. Please try again later</b></div>");
         } else {
             int count = 0;
             for (Recommendation rec : recommendations) {
                 List<Location> locList = rec.getLocations();
                 for (Location loc : locList) {
-                    if (count >= 5) break;
+//                    if (count >= 5) break;
                     stringB.append("<div>");
                     stringB.append("<span style='font-size:14px; font-weight:bold; font-family:SansSerif;'>")
                             .append((count + 1))
@@ -50,7 +51,7 @@ public class RecommendationView extends JFrame {
                     stringB.append("</div>");
                     count++;
                 }
-                if (count >= 5) break;
+//                if (count >= 5) break;
             }
         }
 
@@ -61,7 +62,7 @@ public class RecommendationView extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        JButton viewMapButton = new JButton("View Map");
+        viewMapButton = new JButton("View Map");
         viewMapButton.addActionListener(e -> {
             if (!recommendations.isEmpty()) {
                 List<Location> locs = new ArrayList<>();

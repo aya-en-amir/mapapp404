@@ -22,7 +22,7 @@ public class LoginView extends JPanel{
     private final JTextField vibeField = new JTextField(15);
     private final JLabel vibeFieldError = new JLabel();
 
-    private final JButton findLocationButton;
+    public JButton findLocationButton;
 
     public LoginView() {
 
@@ -91,5 +91,9 @@ public class LoginView extends JPanel{
             RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
             recommendationView.setVisible(true);
         });
+
     }
+    public void setUsernameField(String username) {this.usernameField.setText(username);}
+    public void setPostalCodeField(String postalCode) {this.postalCodeInputField.setText(postalCode);}
+    public void setVibeField(String vibe) {this.vibeField.setText(vibe);}
 }
