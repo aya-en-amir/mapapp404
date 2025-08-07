@@ -35,7 +35,13 @@ This program is made to help user find locations tailored to their current emoti
 - clone the repository using the provided link, or
 - download the project direactly as a ZIP file
 2. Open the project on a Java IDE equipped with JDK 24.
-3. Run the main class to start the program. The main class is located in /src/main/java/app/main
+3. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
+- DeepSeek API : link
+- DeepSeek endpoint : 
+- GoogleMaps API : link
+
+Then, an .env needs to be created. Right click on this directory as specified in the picture 
+ 
 
 # [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
 
