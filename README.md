@@ -32,9 +32,25 @@ This program is made to help user find locations tailored to their current emoti
 # [Installation Instructions](#installation-instructions)
 
 1. The program source code can be obtained by clicking the green code button. From there, you can either:
-- clone the repository using the provided link, or
-- download the project direactly as a ZIP file
-2. Open the project on a Java IDE equipped with JDK 24.
+a. clone the repository using the provided link, or
+    i. Copy the url.
+   ii. On IntelliJ IDEA (or any other JAVA IDE) create a new project from version control.
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 40 24" src="https://github.com/user-attachments/assets/411d1b77-4e0d-47da-9711-bff943cd5f8e" />
+  iii. Paste the project's link into the URL section,
+   iv. Click clone.
+
+b. download the project directly as a ZIP file
+
+The program runs with JDK24, so the file needs to be configured. 
+Head to project structure.
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 47 36" src="https://github.com/user-attachments/assets/7eac993c-d3a1-4fd0-af0b-ff98130a5966" />
+
+Click such that it's JDK24. 
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 48 25" src="https://github.com/user-attachments/assets/2dd849c7-7503-4a2f-b328-146bd3455a11" />
+
+Then, press apply. 
+
+
 3. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
 - DeepSeek API : link
 - DeepSeek endpoint : link
