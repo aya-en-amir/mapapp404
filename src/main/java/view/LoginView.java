@@ -41,7 +41,7 @@ public class LoginView extends JPanel{
         usernameField.setFont(fieldFont);
         usernameField.setPreferredSize(new Dimension(300, 30));
 
-        JLabel postalCodeLabel = new JLabel("Enter your postal code: e.g A0B 0C0");
+        JLabel postalCodeLabel = new JLabel("Enter your postal code: e.g M5S 2E4");
         postalCodeLabel.setFont(labelFont);
         postalCodeInputField.setFont(fieldFont);
         postalCodeInputField.setPreferredSize(new Dimension(300, 30));
