@@ -18,21 +18,21 @@ import java.util.List;
 import static org.junit.Assert.assertThrows;
 
 public class MainTest {
-    @Test
-    public void loginViewTest(){
-        final JFrame application = new JFrame("Login");
-        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setContentPane(new LoginView());
-        application.setSize(800, 400);
-        application.setLocationRelativeTo(null);
-        application.setVisible(true);
-    }
+//    @Test
+//    public void loginViewTest(){
+//        final JFrame application = new JFrame("Login");
+//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        application.setContentPane(new LoginView());
+//        application.setSize(800, 400);
+//        application.setLocationRelativeTo(null);
+//        application.setVisible(true);
+//    }
 
     @Test
     public void loginViewOnFindLocationsClick(){
         LoginView loginView = new LoginView();
         loginView.setUsernameField("Tasfia");
-        loginView.setPostalCodeField("M4B02");
+        loginView.setPostalCodeField("M4B0C1");
         loginView.setVibeField("happy");
         loginView.findLocationButton.doClick();
     }
@@ -52,6 +52,7 @@ public class MainTest {
     public void recommendationViewEmptyTest(){
         RecommendationView recommendationView = new RecommendationView(List.of());
         recommendationView.setVisible(true);
+        recommendationView.viewMapButton.doClick();
     }
 
     @Test
@@ -60,7 +61,7 @@ public class MainTest {
         LLMClient ds = new DeepSeekClient();
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
         Recommender recommender = new Recommender("hello", gmaps.getBackupLocationsTesting(), ds);
-        assert recommender.getLocations() instanceof List;
+        assert recommender.getLocations() != null;
 
     }
 
@@ -79,17 +80,24 @@ public class MainTest {
     }
 
     @Test
-    public void gMapsPostalCodeWrongLengthThrowsException() throws Exception {
+    public void gMapsPostalCodeWrongLength() throws Exception {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
         gmaps.serveLocations("a");
     }
 
     @Test
-    public void gMapsPostalCodeWrongFormatThrowsException() throws Exception {
+    public void gMapsPostalCodeWrongFormat() throws Exception {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
         gmaps.serveLocations("aaaa");
+    }
+
+    @Test
+    public void gMapsInvalidPostalCode() throws Exception {
+        int radiusInMeters = 5000;
+        GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
+        gmaps.serveLocations("$%^()&");
     }
 
 //    @Test

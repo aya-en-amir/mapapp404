@@ -70,14 +70,8 @@ public class GoogleMapsClient implements LocationFinder {
             final JSONObject geoResponse = getJsonResponse(geocodeUrl);
             final String status = geoResponse.getString("status");
 
-            if (status.equals("ZERO_RESULTS")) {
+            if (status.equals("ZERO_RESULTS") || !(postalCode.length() == 7 || postalCode.length() == 6) || !(postalCode.matches("^[A-Z]\\d[A-Z]\\d[A-Z]\\d$")||postalCode.matches("^[A-Z]\\d[A-Z] \\d[A-Z]\\d$"))) {
                 throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
-            }
-            else if (postalCode.length() != 7) {
-                throw new InvalidPostalCodeException("No location found for postal code: " + postalCode + ". Postal code must be exactly 7 char long");
-            }
-            else if(!(postalCode.matches("^[A-Z]\\d[A-Z]\\d[A-Z]\\d$")||postalCode.matches("^[A-Z]\\d[A-Z] \\d[A-Z]\\d$"))){
-                throw new InvalidPostalCodeException("Postal code formatting is incorrect. Please format as either A0B0C0 or A0B 0C0");
             }
             else if (!status.equals("OK")) {
                 throw new APIException("An error occurred with Google Maps in finding your location.");
