@@ -100,7 +100,6 @@ public class MainTest {
         gmaps.serveLocations("$%^()&");
     }
 
-
     @Test
     public void deepSeekExceptionTest() throws exceptions.APIException{
         DeepSeekClient ds = new DeepSeekClient();
