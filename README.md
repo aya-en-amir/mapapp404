@@ -2,14 +2,17 @@
 ## Authors:
 
 # Overview
-Our program works by using user input to output a list of top locations as well as a map to pinpoint respective locations.
+Our program works by using user input to output a list of tailored locations as well as a map to pinpoint respective locations.
 
-When our program is run, it takes you to the first landing page (the main page). Here, the user enters their current mood/feeling (e.g I am feeling perplexed today). This prompt is then sent to our DeepSeek API, and the top 15 synonyms of the user’s sentiment are extracted. The platform then matches the closest locations (using the user's postal code to measure proximity) to these keywords to find a list of 5 locations that the user can go to. The matching between synonyms and locations is completed through Google's API which seeks out top locations from Google reviews using the produced synonyms. The ranking system, which is responsible for creating a list of the top 5 locations, is completed using cosine similarity equation.
+When our program runs, it takes you to the first landing page (the main page) where you enter: 
+- current mood/feeling (e.g I am feeling perplexed today).
+- current postal code.
+The postal code will be given to the Google Maps API and it will return 20 nearby locations. Based on these location reviews and the user's prompt, the Deep Seek API will return a list of 5 locations that the user can go to. 
 
 As a result, there are three landing pages; one for the user to input all information, one to display the top 5 recommendations, and one to display the map.
 
 # Purpose
-
+This program is made to help user find locations tailored to their current emotiional state. 
 
 # Table of Contents
 ### [Installation Instructions](#installation-instructions)
@@ -22,14 +25,19 @@ As a result, there are three landing pages; one for the user to input all inform
 
 
 # [Installation Instructions](#installation-instructions)
-
+1. The program source code can be obtained by clicking the green code button. From there, you can either:
+- clone the repository using the provided link, or
+- download the project direactly as a ZIP file
+2. Open the project on a Java IDE equipped with JDK 24.
+3. Run the main class to start the program. The main class is located in /src/main/java/app/main
+  
 
 # [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
 
 
 [# External APIs](#external-apis)
 ### Our program uses 3 external APIs:
-- DeepSeek API (for the synonym search).
+- DeepSeek API (for the recommended location generator).
 - Google Map API (for the Google review a location proximity search).
 - JXMap API (for the map display with the respective locations).
 
