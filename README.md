@@ -35,7 +35,8 @@ This program is made to help user find locations tailored to their current emoti
 a. clone the repository using the provided link, or
     i. Copy the url.
    ii. On IntelliJ IDEA (or any other JAVA IDE) create a new project from version control.
-<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 40 24" src="https://github.com/user-attachments/assets/411d1b77-4e0d-47da-9711-bff943cd5f8e" />
+<img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 51 53" src="https://github.com/user-attachments/assets/17623096-2611-4aca-8927-6cd3c6d447d8" />
+
   iii. Paste the project's link into the URL section,
    iv. Click clone.
 
