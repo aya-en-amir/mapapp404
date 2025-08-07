@@ -53,4 +53,3 @@ public class RecommenderTest {
         System.out.println("Recommended location objects: " + locationGiver.recommend());
     }
 }
-

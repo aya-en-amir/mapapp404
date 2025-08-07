@@ -32,6 +32,10 @@ public class GoogleMapsClient implements LocationFinder {
         this.meterRadius = meterRadius;
     }
 
+    public List<Location> getBackupLocationsTesting(){
+        return backupLocations;
+    }
+
     private static List<Location> generateBackupLocations() {
         Location location1 = new Location("The Yorkville Royal Sonesta Hotel Toronto", (float) 43.653225,
                 (float) -79.38319, new ArrayList<>(), "220 Bloor St W, Toronto, ON M5S 3B7, Canada");
@@ -66,9 +70,10 @@ public class GoogleMapsClient implements LocationFinder {
             final JSONObject geoResponse = getJsonResponse(geocodeUrl);
             final String status = geoResponse.getString("status");
 
-            if (status.equals("ZERO_RESULTS")) {
+            if (status.equals("ZERO_RESULTS") || !(postalCode.length() == 7 || postalCode.length() == 6) || !(postalCode.matches("^[A-Z]\\d[A-Z]\\d[A-Z]\\d$")||postalCode.matches("^[A-Z]\\d[A-Z] \\d[A-Z]\\d$"))) {
                 throw new InvalidPostalCodeException("No location found for postal code: " + postalCode);
-            } else if (!status.equals("OK")) {
+            }
+            else if (!status.equals("OK")) {
                 throw new APIException("An error occurred with Google Maps in finding your location.");
             }
 
