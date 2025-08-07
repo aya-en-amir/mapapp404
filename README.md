@@ -5,8 +5,10 @@
 Our program works by using user input to output a list of tailored locations as well as a map to pinpoint respective locations.
 
 When our program runs, it takes you to the first landing page (the main page) where you enter: 
+
 - current mood/feeling (e.g I am feeling perplexed today).
 - current postal code.
+  
 The postal code will be given to the Google Maps API and it will return 20 nearby locations. Based on these location reviews and the user's prompt, the Deep Seek API will return a list of 5 locations that the user can go to. 
 
 As a result, there are three landing pages; one for the user to input all information, one to display the top 5 recommendations, and one to display the map.
