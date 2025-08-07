@@ -37,7 +37,7 @@ This program is made to help user find locations tailored to their current emoti
 2. Open the project on a Java IDE equipped with JDK 24.
 3. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
 - DeepSeek API : link
-- DeepSeek endpoint : 
+- DeepSeek endpoint : link
 - GoogleMaps API : link
 
 A .env needs to be created. Right click on this directory as specified in the picture.
@@ -47,7 +47,7 @@ Click new and create a new file
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 29 59" src="https://github.com/user-attachments/assets/78aa8c22-7de9-4b00-acce-c94f78d7f51e" />
 
 
-Name the file as .env
+Name the file as .env.
 Then, type in the DeepSeek API and endpoint as well as the GoogleMaps API
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 27 13" src="https://github.com/user-attachments/assets/7b2a5521-c75b-4dd5-9c03-975b02e0036e" />
 
