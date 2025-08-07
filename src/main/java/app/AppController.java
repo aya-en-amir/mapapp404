@@ -17,6 +17,7 @@ import interface_adapter.recommendation.RecommendationViewModel;
 import interface_service.LLMClient;
 import interface_service.RecommenderInterface;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.jetbrains.annotations.NotNull;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
@@ -63,8 +64,12 @@ public class AppController {
         final LoginController loginController = new LoginController(loginInteractor);
         loginView.setLoginController(loginController);
 
+        final RecommendationController recommendationController = getRecommendationController();
+        loginView.setRecommendationController(recommendationController);
+
         return this;
     }
+
     public AppController addRecommendationView () {
         recommendationViewModel = new RecommendationViewModel();
         recommendationView = new RecommendationView(recommendationViewModel);
@@ -73,15 +78,20 @@ public class AppController {
     }
 
     public AppController addRecommendationUseCase() {
+        final RecommendationController recommendationController = getRecommendationController();
+        recommendationView.setRecommendationController(recommendationController);
+
+        return this;
+
+    }
+
+    private @NotNull RecommendationController getRecommendationController() {
         final RecommendationOutputBoundary recommendationOutputBoundary = new RecommendationPresenter(recommendationViewModel,
                 viewManagerModel);
         final RecommendationInputBoundary recommendationInteractor = new RecommendationInteractor(userDataAccessObject,
                 recommendationOutputBoundary);
         final RecommendationController recommendationController = new RecommendationController(recommendationInteractor);
-        recommendationView.setRecommendationController(recommendationController);
-
-        return this;
-
+        return recommendationController;
     }
 
     public JFrame build() {

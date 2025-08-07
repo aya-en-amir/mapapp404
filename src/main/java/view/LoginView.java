@@ -4,6 +4,7 @@ import app.AppController;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +34,7 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
     private final JButton findLocationButton;
     private final LoginViewModel loginViewModel;
     private LoginController loginController;
+    private RecommendationController recommendationController;
 
 //    private final JButton cancel;
 
@@ -80,6 +82,7 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
                 return;
             }
             loginController.execute(username, postalCode);
+            recommendationController.execute(vibe, postalCode);
 //            AppController controller = new AppController();
 //            controller.getRecommendations(vibe);
         });
@@ -92,6 +95,10 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
 
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
+    }
+
+    public void setRecommendationController(RecommendationController recommendationController) {
+        this.recommendationController = recommendationController;
     }
 
     @Override
