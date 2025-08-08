@@ -1,6 +1,12 @@
 # Project Name : Map404
 ## Authors:
 
+- Enaya Amir
+- Haeun Goo
+- Ira Ara
+- Isha Ruparelia
+- Olivia Boyle
+
 # Overview
 Our program works by using user input to output a list of tailored locations as well as a map to pinpoint respective locations.
 
@@ -32,8 +38,9 @@ This program is made to help user find locations tailored to their current emoti
 # [Installation Instructions](#installation-instructions)
 1. The program source code can be obtained by clicking the green code button. From there, you can either:
    
-a. clone the repository using the provided link, or
-    i. Copy the url.
+a. clone the repository using the provided link
+   
+   i. Copy the url.
     
    ii. On IntelliJ IDEA (or any other JAVA IDE) create a new project from version control.
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 51 53" src="https://github.com/user-attachments/assets/17623096-2611-4aca-8927-6cd3c6d447d8" />
@@ -107,13 +114,26 @@ user can determine whether the software is right for them
 clarify the software’s features
 
 ### Landing Page 1 (Login Screen):
+
+User fills in their mood and current location postal code. 
+
 <img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
 
+
+
 ### Landing Page 2 (Recommendation Screen):
+
+The top 5 suitable location are displayed. 
+
 <img width="665" height="358" alt="image" src="https://github.com/user-attachments/assets/4c03451e-e9f0-400e-b08c-80ca88c6abe1" />
 
 
+
+
 ### Landing Page 3 (Map View Screen):
+
+The map view of the locations. 
+
 <img width="1054" height="508" alt="image" src="https://github.com/user-attachments/assets/a38c41c7-0ccf-4d38-8516-271ae1c7ecbc" />
 
 
