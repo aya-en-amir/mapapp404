@@ -37,7 +37,7 @@ This program is made to help user find locations tailored to their current emoti
 ### [Usage Instructions](#usage-instructions)
 ### [External APIs](#external-apis)
 ### [License](#license)
-### [Features of the Software)](#features-of-the-software)
+### [Features of the Software](#features-of-the-software)
 ### [Feedback](#feedback)
 ### [Contributions](#contributions)
 
