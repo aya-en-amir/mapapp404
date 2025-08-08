@@ -30,7 +30,6 @@ This program is made to help user find locations tailored to their current emoti
 
 
 # [Installation Instructions](#installation-instructions)
-
 1. The program source code can be obtained by clicking the green code button. From there, you can either:
 a. clone the repository using the provided link, or
     i. Copy the url.
@@ -38,6 +37,7 @@ a. clone the repository using the provided link, or
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 51 53" src="https://github.com/user-attachments/assets/17623096-2611-4aca-8927-6cd3c6d447d8" />
 
   iii. Paste the project's link into the URL section,
+  
    iv. Click clone.
 
 b. download the project directly as a ZIP file
