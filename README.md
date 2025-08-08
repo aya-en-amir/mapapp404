@@ -1,4 +1,4 @@
-# Team Name: 404 Team Not Found
+# Project Name : Map404
 ## Authors:
 
 # Overview
@@ -21,7 +21,7 @@ This program is made to help user find locations tailored to their current emoti
 
 # Table of Contents
 ### [Installation Instructions](#installation-instructions)
-### [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
+### [Usage Instructions](#usage-instructions)
 ### [External APIs](#external-apis)
 ### [License](#license)
 ### [Features of the Software)](#features-of-the-software)
@@ -31,31 +31,34 @@ This program is made to help user find locations tailored to their current emoti
 
 # [Installation Instructions](#installation-instructions)
 1. The program source code can be obtained by clicking the green code button. From there, you can either:
+   
 a. clone the repository using the provided link, or
     i. Copy the url.
+    
    ii. On IntelliJ IDEA (or any other JAVA IDE) create a new project from version control.
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 51 53" src="https://github.com/user-attachments/assets/17623096-2611-4aca-8927-6cd3c6d447d8" />
 
-  iii. Paste the project's link into the URL section,
+  iii. Paste the project's link into the URL section.
   
    iv. Click clone.
 
 b. download the project directly as a ZIP file
 
-The program runs with JDK24, so the file needs to be configured. 
-Head to project structure.
+The program runs with JDK24, so ensure your IDE is configure to use JDK24. If your IDE is set to a different JDK version, update the project settings so it uses JDK 24 to avoid compatibility issues by following these steps. 
+
+i. Head to project structure.
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 47 36" src="https://github.com/user-attachments/assets/7eac993c-d3a1-4fd0-af0b-ff98130a5966" />
 
-Click such that it's JDK24. 
+ii. Click such that it's JDK24. 
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 48 25" src="https://github.com/user-attachments/assets/2dd849c7-7503-4a2f-b328-146bd3455a11" />
 
-Then, press apply. 
+iii. Then, press apply. 
 
 
 3. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
-- DeepSeek API : link
-- DeepSeek endpoint : link
-- GoogleMaps API : link
+- DeepSeek API : https://platform.deepseek.com/sign_in
+
+- GoogleMaps Places API : https://developers.google.com/maps/documentation/places/web-service
 
 A .env needs to be created. Right click on this directory as specified in the picture.
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 50 55" src="https://github.com/user-attachments/assets/1f6ab43c-3efb-4de6-be95-5ce08c955eb0" />
@@ -66,13 +69,16 @@ Click new and create a new file
 
 
 Name the file as .env.
-Then, type in the DeepSeek API and endpoint as well as the GoogleMaps API
+Then, type in the DeepSeek and GoogleMaps API. Fill in DEEPSEEK_ENDPOINT with https://openrouter.ai/api/v1/chat/completions
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 27 13" src="https://github.com/user-attachments/assets/7b2a5521-c75b-4dd5-9c03-975b02e0036e" />
 
 
 
-
-# [Clean Architecture and SOLID Principles](#clean-architecture-and-solid-principles)
+# [Usage Instructions](#usage-instructions)
+1. Run the main function located in /src/main/java/app/main/ by clicking the green play button on the top right of the screen. Then a pop out window will appear.
+2. Fill out the information needed.
+   Make sure your postal code is written in the correct format. 
+3. Click find locations. 
 
 
 # [External APIs](#external-apis)
