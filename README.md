@@ -28,7 +28,7 @@ As a result, there are three landing pages; one for the user to input all inform
 
 # Purpose
 
-This program is made to help user find locations tailored to their current emotiional state. 
+This program is made to help user find locations tailored to their current emotional state. 
 
 
 
