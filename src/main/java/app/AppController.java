@@ -26,7 +26,6 @@ import use_case.recommendation.RecommendationInteractor;
 import use_case.recommendation.RecommendationOutputBoundary;
 import view.LoginView;
 import view.RecommendationView;
-//import view.ResultView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +41,6 @@ public class AppController {
     private LoginView loginView;
     private RecommendationViewModel recommendationViewModel;
     private RecommendationView recommendationView;
-//    private ResultView resultView;
 
     public AppController() {
         cardPanel.setLayout(cardLayout);
@@ -82,9 +80,7 @@ public class AppController {
         recommendationView.setRecommendationController(recommendationController);
 
         return this;
-
-    }
-
+}
     private @NotNull RecommendationController getRecommendationController() {
         final RecommendationOutputBoundary recommendationOutputBoundary = new RecommendationPresenter(recommendationViewModel,
                 viewManagerModel);
@@ -105,26 +101,4 @@ public class AppController {
         return application;
     }
 }
-
-//    public List<Location> getRecommendations(String prompt) {
-//        try {
-//            LLMClient llmClient = new DeepSeekClient();
-//            final int radiusInMeters = 5000;
-//            final String postalCode = "M5S 2E4";
-//
-//            GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
-//            List<Location> locations = client.serveLocations(postalCode);
-//
-//            if (locations == null || locations.isEmpty()) return List.of();
-//
-//            RecommenderInterface recommender = new Recommender(prompt, locations, llmClient);
-//            Recommendation recommendation = recommender.recommend();
-//
-//            return recommendation.getLocations();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return List.of();
-//        }
-//    }
 

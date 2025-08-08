@@ -31,17 +31,15 @@ public class RecommendationInteractor implements RecommendationInputBoundary{
         try {
             LLMClient llmClient = new DeepSeekClient();
             final int radiusInMeters = 5000;
-            final String postCode = "M5S 2E4";
+//            final String postalCode = "M5S 2E4";
 
             GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
-            List<Location> locations = client.serveLocations(postCode);
+            List<Location> locations = client.serveLocations(postalCode);
 
-            if (locations == null || locations.isEmpty()) {
-                recoOutputBoundary.loadFailureView("No locations found");
-            }
             RecommenderInterface recommender = new Recommender(prompt, locations, llmClient);
             Recommendation recommendation = recommender.recommend();
-            RecommendationOutputData outputData = new RecommendationOutputData(recommendation.getLocations());
+
+            RecommendationOutputData outputData = new RecommendationOutputData(List.of(recommendation));
             recoOutputBoundary.loadSuccessView(outputData);
 
         } catch (Exception e) {

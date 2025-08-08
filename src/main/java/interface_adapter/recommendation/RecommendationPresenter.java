@@ -19,7 +19,7 @@ public class RecommendationPresenter implements RecommendationOutputBoundary {
     @Override
     public void loadSuccessView(RecommendationOutputData outputData) {
         RecommendationState state = recommendationViewModel.getState();
-        state.setRecoLocations(outputData.getRecoLocations());
+        state.setRecommendation(outputData.getRecoLocations());
         state.setErrorMessage(null);
 
         recommendationViewModel.setState(state);
@@ -32,7 +32,7 @@ public class RecommendationPresenter implements RecommendationOutputBoundary {
     @Override
     public void loadFailureView(String errorMessage) {
         RecommendationState state = recommendationViewModel.getState();
-        state.setRecoLocations(List.of());
+        state.setRecommendation(List.of());
         state.setErrorMessage(errorMessage);
 
         recommendationViewModel.setState(state);

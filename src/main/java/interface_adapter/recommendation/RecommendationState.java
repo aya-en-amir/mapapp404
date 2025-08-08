@@ -1,16 +1,17 @@
 package interface_adapter.recommendation;
 
 import entity.Location;
+import entity.Recommendation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendationState {
-    private List<Location> recoLocations = new ArrayList<>();
+    private List<Recommendation> recommendations = new ArrayList<>();
     private String errorMessage = "";
 
-    public List<Location> getRecoLocations() {
-        return recoLocations;
+    public List<Recommendation> getRecommendations() {
+        return recommendations;
     }
 
     public String getErrorMessage() {
@@ -21,8 +22,8 @@ public class RecommendationState {
         this.errorMessage = errorMessage;
     }
 
-    public void setRecoLocations(List<Location> recoLocations) {
-        this.recoLocations = recoLocations;
+    public void setRecommendation(List<Recommendation> recommendations) {
+        this.recommendations = recommendations;
     }
 
 }
