@@ -1,4 +1,7 @@
 # Project Name : Map404
+
+
+
 ## Authors:
 
 - Enaya Amir
@@ -6,6 +9,8 @@
 - Ira Ara
 - Isha Ruparelia
 - Olivia Boyle
+
+
 
 # Overview
 Our program works by using user input to output a list of tailored locations as well as a map to pinpoint respective locations.
@@ -20,9 +25,11 @@ The postal code will be given to the Google Maps API and it will return 20 nearb
 As a result, there are three landing pages; one for the user to input all information, one to display the top 5 recommendations, and one to display the map.
 
 
+
 # Purpose
 
 This program is made to help user find locations tailored to their current emotiional state. 
+
 
 
 # Table of Contents
@@ -35,6 +42,7 @@ This program is made to help user find locations tailored to their current emoti
 ### [Contributions](#contributions)
 
 
+
 # [Installation Instructions](#installation-instructions)
 1. The program source code can be obtained by clicking the green code button. From there, you can either:
    
@@ -43,40 +51,48 @@ a. clone the repository using the provided link
    i. Copy the url.
     
    ii. On IntelliJ IDEA (or any other JAVA IDE) create a new project from version control.
+   
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 51 53" src="https://github.com/user-attachments/assets/17623096-2611-4aca-8927-6cd3c6d447d8" />
 
   iii. Paste the project's link into the URL section.
   
    iv. Click clone.
 
+
+
 b. download the project directly as a ZIP file
 
 The program runs with JDK24, so ensure your IDE is configure to use JDK24. If your IDE is set to a different JDK version, update the project settings so it uses JDK 24 to avoid compatibility issues by following these steps. 
 
 i. Head to project structure.
+
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 47 36" src="https://github.com/user-attachments/assets/7eac993c-d3a1-4fd0-af0b-ff98130a5966" />
 
 ii. Click such that it's JDK24. 
+
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 48 25" src="https://github.com/user-attachments/assets/2dd849c7-7503-4a2f-b328-146bd3455a11" />
 
 iii. Then, press apply. 
 
 
-3. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
+2. The program requires a DeepSeek and Google Maps API Key and a DeepSeek endpoint that can be acquired from these links : 
 - DeepSeek API : https://platform.deepseek.com/sign_in
 
 - GoogleMaps Places API : https://developers.google.com/maps/documentation/places/web-service
 
 A .env needs to be created. Right click on this directory as specified in the picture.
+
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 50 55" src="https://github.com/user-attachments/assets/1f6ab43c-3efb-4de6-be95-5ce08c955eb0" />
 
 
 Click new and create a new file
+
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 29 59" src="https://github.com/user-attachments/assets/78aa8c22-7de9-4b00-acce-c94f78d7f51e" />
 
 
 Name the file as .env.
 Then, type in the DeepSeek and GoogleMaps API. Fill in DEEPSEEK_ENDPOINT with https://openrouter.ai/api/v1/chat/completions
+
 <img width="1440" height="900" alt="Screenshot 2025-08-07 at 18 27 13" src="https://github.com/user-attachments/assets/7b2a5521-c75b-4dd5-9c03-975b02e0036e" />
 
 
