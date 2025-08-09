@@ -24,7 +24,9 @@ As a result, there are three landing pages; one for the user to input all inform
 
 # Purpose
 
-This program is made to help user find locations tailored to their current emotional state. 
+The purpose of our program has been designed to allow users find the top rated locations (e.g. restaurants, cafes, theme parks, stores) based on their current emotional state. 
+
+If the user is feeling stressed, our program will generate nearby locations such as, cafes, spas, parks, etc., and output them onto a map for the user's visualization.
 
 
 
