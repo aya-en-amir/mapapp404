@@ -7,29 +7,25 @@ import interface_adapter.recommendation.RecommendationViewModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecommendationView extends JPanel implements PropertyChangeListener, ActionListener {
+public class RecommendationView extends JFrame {
     public JButton viewMapButton;
     private RecommendationController recommendationController;
     private RecommendationViewModel recommendationViewModel;
 
     public RecommendationView(RecommendationViewModel recommendationViewModel) {
+//        Font mainFont = new Font("SansSerif", Font.BOLD, 18);
+//        Font labelFont = new Font("SansSerif", Font.PLAIN, 14);
         this.recommendationViewModel = recommendationViewModel;
-        this.recommendationViewModel.addPropertyChangeListener(this);
         List<Recommendation> recommendations = recommendationViewModel.getState().getRecommendations();
 
-        final JLabel title = new JLabel("Top 5 Recommendations");
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-//        setTitle("Top 5 Recommendations");
+
+        setTitle("Top 5 Recommendations");
         setSize(700,500);
-//        setLocationRelativeTo(null);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JEditorPane resultPane = new JEditorPane();
@@ -85,8 +81,7 @@ public class RecommendationView extends JPanel implements PropertyChangeListener
         });
 
         JButton closeButton = new JButton("Close");
-//        closeButton.addActionListener(e -> dispose());
-        closeButton.addActionListener(e -> System.exit(0));
+        closeButton.addActionListener(e -> dispose());
 
         buttonPanel.add(viewMapButton);
         buttonPanel.add(closeButton);
@@ -95,24 +90,7 @@ public class RecommendationView extends JPanel implements PropertyChangeListener
 
         setVisible(true);
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(this, "Cancel not implemented yet.");
-
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        removeAll();
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Recommended Locations:"));
-        List<Recommendation> listRecommendation = recommendationViewModel.getState().getRecommendations();
-        for (Recommendation recommendation : listRecommendation) {
-            add(new JLabel(recommendation.toString()));
-        }
-    }
-
     public void setRecommendationController(RecommendationController recommendationController) {
+        this.recommendationController = recommendationController;
     }
 }

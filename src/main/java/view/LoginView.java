@@ -17,62 +17,80 @@ import java.beans.PropertyChangeListener;
  * The View for when the user is logging into the program.
  */
 
-public class LoginView  extends JPanel implements ActionListener, PropertyChangeListener {
+public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    final String viewName = "log in";
-    // private final LoginViewModel loginViewModel;
+    final String viewName = "Log In";
 
     private final JTextField usernameField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
 
-    private final JPasswordField postalCodeInputField = new JPasswordField(15);
+    private final JTextField postalCodeInputField = new JTextField(15);
     private final JLabel postalCodeErrorField = new JLabel();
 
-    private final JPasswordField vibeField = new JPasswordField(15);
+    private final JTextField vibeField = new JTextField(15);
     private final JLabel vibeFieldError = new JLabel();
-
-    private final JButton findLocationButton;
     private final LoginViewModel loginViewModel;
     private LoginController loginController;
     private RecommendationController recommendationController;
 
-//    private final JButton cancel;
+    public JButton findLocationButton;
 
     public LoginView(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
-        loginViewModel.addPropertyChangeListener(this);
+        this.loginViewModel.addPropertyChangeListener(this);
 
-        final JLabel title = new JLabel("Login Screen");
+
+        // Set bigger fonts
+        Font labelFont = new Font("SansSerif", Font.PLAIN, 16);   // labels
+        Font fieldFont = new Font("SansSerif", Font.PLAIN, 16);   // text fields
+        Font buttonFont = new Font("SansSerif", Font.BOLD, 18);   // button
+        Font titleFont = new Font("SansSerif", Font.BOLD, 24);    // title
+
+        final JLabel title = new JLabel(viewName);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setFont(titleFont);
 
-        final LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Enter your username: e.g Alice"), usernameField);
-        final LabelTextPanel postalCodeInfo = new LabelTextPanel(
-                new JLabel("Enter your postal code: e.g A0B 0C0"), postalCodeInputField);
-        final LabelTextPanel vibeInfo = new LabelTextPanel(
-                new JLabel("Enter the vibe you're feeling today e.g gloomy"), vibeField);
+        JLabel usernameLabel = new JLabel("Enter your username: e.g Alice");
+        usernameLabel.setFont(labelFont);
+        usernameField.setFont(fieldFont);
+        usernameField.setPreferredSize(new Dimension(300, 30));
+
+        JLabel postalCodeLabel = new JLabel("Enter your postal code: e.g M5S 2E4");
+        postalCodeLabel.setFont(labelFont);
+        postalCodeInputField.setFont(fieldFont);
+        postalCodeInputField.setPreferredSize(new Dimension(300, 30));
+
+        JLabel vibeLabel = new JLabel("Enter the vibe you're feeling today e.g gloomy");
+        vibeLabel.setFont(labelFont);
+        vibeField.setFont(fieldFont);
+        vibeField.setPreferredSize(new Dimension(300, 30));
+
+        usernameErrorField.setFont(labelFont);
+        postalCodeErrorField.setFont(labelFont);
+        vibeFieldError.setFont(labelFont);
 
         final JPanel buttons = new JPanel();
         findLocationButton = new JButton("Find Locations");
+        findLocationButton.setFont(buttonFont);
+        findLocationButton.setSize(60, 45);
         buttons.add(findLocationButton);
 
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(usernameInfo);
-        this.add(postalCodeInfo);
-        this.add(vibeInfo);
+        this.add(new LabelTextPanel(usernameLabel, usernameField));
+        this.add(new LabelTextPanel(postalCodeLabel, postalCodeInputField));
+        this.add(new LabelTextPanel(vibeLabel, vibeField));
         this.add(usernameErrorField);
         this.add(postalCodeErrorField);
         this.add(vibeFieldError);
-        this.add(findLocationButton);
         this.add(buttons);
 
         findLocationButton.addActionListener(e -> {
             String username = usernameField.getText();
-            String postalCode = new String(postalCodeInputField.getPassword());
-            String vibe = new String(vibeField.getPassword());
+            String postalCode = postalCodeInputField.getText();
+            String vibe = vibeField.getText();
 
             if (username.isEmpty() || postalCode.isEmpty() || vibe.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
@@ -81,21 +99,25 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
+
             loginController.execute(username, postalCode);
+            recommendationController.execute(vibe, username);
             loginController.switchToRecommendationView();
-            recommendationController.execute(vibe, postalCode);
-//            AppController controller = new AppController();
-//            controller.getRecommendations(vibe);
+
         });
+
     }
 
-
-    public String getViewName() {
-        return viewName;
+    public void setUsernameField(String username) {
+        this.usernameField.setText(username);
     }
 
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
+    public void setPostalCodeField(String postalCode) {
+        this.postalCodeInputField.setText(postalCode);
+    }
+
+    public void setVibeField(String vibe) {
+        this.vibeField.setText(vibe);
     }
 
     public void setRecommendationController(RecommendationController recommendationController) {
@@ -116,5 +138,13 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
 
     private void setFields(LoginState state) {
         usernameField.setText(state.getUsername());
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
 }

@@ -7,6 +7,7 @@ import interface_adapter.recommendation.RecommendationViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 import use_case.recommendation.RecommendationInputBoundary;
+import view.RecommendationView;
 
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void switchToRecommendationView() {
-        viewManagerModel.setState(recommendationViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+        RecommendationView recommendationView = new RecommendationView(recommendationViewModel);
+        recommendationView.setVisible(true);
     }
 
 
