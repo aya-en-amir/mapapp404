@@ -117,13 +117,10 @@ be consistent if the README claims the project is “in the public domain”
 while the project has an MIT License)
 
 # [Features of the Software](#features-of-the-software)
-[] All major features of the software are described so that a programmer or
-user can determine whether the software is right for them
+The first feature of this software involves user authentication. User's are required to submit their name, postal code, and current mood in order for our software to identify prime locations (login screen). The program then displays a list of the top nearby locations with respective addresses (recommendation screen). For better viewing, the user can click on the "view map" button, a map of the surrounding area will appear along with the posted locations pinpointed on the map (map view screen).
 
- Descriptions are clear and only detailed when needed
+On the back-end, this program uses DeepSeek in order to find common synonyms for the user's inputted current mood, as well as Google Maps to find nearby locations with reviews that match the user's mood, in some capacity.
 
- Examples or tutorials (videos, screenshots, or code snippets) are used to
-clarify the software’s features
 
 ### Landing Page 1 (Login Screen):
 
@@ -156,7 +153,7 @@ The map view of the locations.
 Rules and guidelines for valid feedback consist of 3 main points. The points include, (1) One thing you enjoyed about our software (front-end or back-end is acceptable). (2) One thing you did not enjoy. (3) One thing that could've been more improved. Please be sure to list out all three points in the following feedback form:
 
 
-[https://docs.google.com/forms/d/e/1FAIpQLSfPoqcIo9gPutUcTL5bcXASE0s6O8cvfxobFAL9fK4LXb4MAw/viewform?usp=header]
+https://docs.google.com/forms/d/e/1FAIpQLSfPoqcIo9gPutUcTL5bcXASE0s6O8cvfxobFAL9fK4LXb4MAw/viewform?usp=header
 
 
 
