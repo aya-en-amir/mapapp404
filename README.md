@@ -110,13 +110,13 @@ Then, type in the DeepSeek and GoogleMaps API. Fill in DEEPSEEK_ENDPOINT with ht
 
 # [License](#license)
 
- License is clearly displayed or visible in the GitHub project
+MIT License
 
- License is legally valid
-
- License is consistent with the details of the project (for example, it would not
-be consistent if the README claims the project is “in the public domain”
-while the project has an MIT License)
+  Permissions
+   - Commercial use
+   - Distribution
+   - Modification
+   - Private use
 
 # [Features of the Software](#features-of-the-software)
 The first feature of this software involves user authentication. User's are required to submit their name, postal code, and current mood in order for our software to identify prime locations (login screen). The program then displays a list of the top nearby locations with respective addresses (recommendation screen). For better viewing, the user can click on the "view map" button, a map of the surrounding area will appear along with the posted locations pinpointed on the map (map view screen).
