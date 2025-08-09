@@ -1,10 +1,10 @@
-package interface_service;
+package use_case.recommendation;
 
 import entity.Location;
 
 import java.util.List;
 
-public interface LocationDataAccessInterface {
+public interface RecommendationDataAccessInterface {
     /**
      * Save a specific location.
      * @param location the location that wanted to be saved

@@ -13,13 +13,9 @@ import java.util.List;
 
 public class LoginInputData {
     private User user;
-    private UserSession userSession;
 
     public LoginInputData(String username, String postalCode) {
         this.user = new User(username, postalCode);
-        this.userSession = new UserSession(user);
-        ArrayList<UserSession> userSessionList = new ArrayList<>();
-        this.user.setSessions(userSessionList);
     }
 
     public String getUsername(){
@@ -27,12 +23,6 @@ public class LoginInputData {
     }
     public String getPostalCode(){
         return user.getPostalCode();
-    }
-    /*
-    should we have this?
-     */
-    public void addSession(UserSession userSession){
-        user.addSession(userSession);
     }
 }
 

@@ -1,15 +1,23 @@
 package view;
 
 import app.AppController;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginState;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * The View for when the user is logging into the program.
  */
 
-public class LoginView extends JPanel{
+public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
     final String viewName = "Log In";
 
@@ -21,10 +29,16 @@ public class LoginView extends JPanel{
 
     private final JTextField vibeField = new JTextField(15);
     private final JLabel vibeFieldError = new JLabel();
+    private final LoginViewModel loginViewModel;
+    private LoginController loginController;
+    private RecommendationController recommendationController;
 
     public JButton findLocationButton;
 
-    public LoginView() {
+    public LoginView(LoginViewModel loginViewModel) {
+        this.loginViewModel = loginViewModel;
+        this.loginViewModel.addPropertyChangeListener(this);
+
 
         // Set bigger fonts
         Font labelFont = new Font("SansSerif", Font.PLAIN, 16);   // labels
@@ -62,7 +76,6 @@ public class LoginView extends JPanel{
         buttons.add(findLocationButton);
 
 
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -87,13 +100,51 @@ public class LoginView extends JPanel{
                 return;
             }
 
-            AppController controller = new AppController();
-            RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
-            recommendationView.setVisible(true);
+            loginController.execute(username, postalCode);
+            recommendationController.execute(vibe, username);
+            loginController.switchToRecommendationView();
+
         });
 
     }
-    public void setUsernameField(String username) {this.usernameField.setText(username);}
-    public void setPostalCodeField(String postalCode) {this.postalCodeInputField.setText(postalCode);}
-    public void setVibeField(String vibe) {this.vibeField.setText(vibe);}
+
+    public void setUsernameField(String username) {
+        this.usernameField.setText(username);
+    }
+
+    public void setPostalCodeField(String postalCode) {
+        this.postalCodeInputField.setText(postalCode);
+    }
+
+    public void setVibeField(String vibe) {
+        this.vibeField.setText(vibe);
+    }
+
+    public void setRecommendationController(RecommendationController recommendationController) {
+        this.recommendationController = recommendationController;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        final LoginState state = (LoginState) evt.getNewValue();
+        setFields(state);
+        usernameErrorField.setText(state.getLoginError());
+    }
+
+    private void setFields(LoginState state) {
+        usernameField.setText(state.getUsername());
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
 }
