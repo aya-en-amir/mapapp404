@@ -2,8 +2,7 @@
 
 
 
-## Authors:
-
+## Authors
 Enaya Amir, Haeun Goo, Ira Ara, Isha Ruparelia, Olivia Boyle
 
 
