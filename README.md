@@ -148,25 +148,49 @@ The map view of the locations.
 
 
 
-
 # [Feedback](#feedback)
 
-Rules and guidelines for valid feedback consist of 3 main points. The points include, (1) One thing you enjoyed about our software (front-end or back-end is acceptable). (2) One thing you did not enjoy. (3) One thing that could've been more improved. Please be sure to list out all three points in the following feedback form:
+Rules and guidelines for valid feedback consist of 3 main points. The points include: 
+(1) One thing you enjoyed about our software (front-end or back-end is acceptable). 
+(2) One thing you did not enjoy. 
+(3) One thing that could've been more improved. 
 
+Please be sure to list out all three points in the following feedback form:
 
 https://docs.google.com/forms/d/e/1FAIpQLSfPoqcIo9gPutUcTL5bcXASE0s6O8cvfxobFAL9fK4LXb4MAw/viewform?usp=header
 
 
-
 # [Contributions](#contributions)
-If you or your team would like to contribute to our project, please begin by
 
- Clearly says how users can contribute to the project
+If you or your team would like to contribute to our project, please follow the guidlines to ensure efficient collaboration.
 
- Clearly describes instructions for making a fork of the project on GitHub
+### You can Contribute by:
+        - Submitting code improvements.
+        - Reporting or fixing bugs.
+        - Implementing additional features.
+        - Assisting with code reviews and testing. 
 
- Gives guidelines for creating a good merge request
+### Forking onto your GitHub Repository:
+        - On the GitHub repository page, click on the "Fork" button to create your own copy of this project.
+        - CLone your fork locally.
 
- Describes protocols for reviewing contributions and merging them into the
-project
+### Guidlines for a Merge Request:
+        - Create a new branch using the following template:  first name + . + last name/initial (i.e. john.smith or john.s).
+        - Make all edits in this branch.
+        - Ensure your own code passes all test cases with descriptive commit messages.
+        - Push your branch.
+        - Create a pull request from your branch to the project's main branch.
+        - Clearly describe the changes you made and reasoning in the pull request. 
+
+### Protocols for Reviewing Contributions and Merging into the Project:
+        - Please review and ensure pull request follows code style and functionality. 
+        - Look for bug issues and resolve them before approving pull request.
+        - Additional reasoning for code changes may be needed prior to approving pull request.
+
+        - If code looks valid and up to standard, reviewers may merge the pull request into the project's main branch.
+        
+
+
+
+Final Note: We hope you enjoy using our software!
 
