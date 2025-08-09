@@ -27,4 +27,9 @@ public class LoginInteractor implements LoginInputBoundary {
                 false);
         loginPresenter.loadSuccessView(loginOutputData);
     }
+
+    @Override
+    public void switchToRecommendationView () {
+        loginPresenter.switchToRecommendationView();
+    }
 }

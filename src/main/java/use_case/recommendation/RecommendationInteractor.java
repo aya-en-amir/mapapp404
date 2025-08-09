@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class RecommendationInteractor implements RecommendationInputBoundary{
     private final RecommendationDataAccessInterface recoDataAccessObject;
-    private final RecommendationOutputBoundary recoOutputBoundary;
+    private final RecommendationOutputBoundary recoPresenter;
 
     public RecommendationInteractor(RecommendationDataAccessInterface recoDataAccessObject,
-                                    RecommendationOutputBoundary recoOutputBoundary) {
+                                    RecommendationOutputBoundary recoPresenter) {
         this.recoDataAccessObject = recoDataAccessObject;
-        this.recoOutputBoundary = recoOutputBoundary;
+        this.recoPresenter = recoPresenter;
     }
 
     @Override
@@ -40,10 +40,10 @@ public class RecommendationInteractor implements RecommendationInputBoundary{
             Recommendation recommendation = recommender.recommend();
 
             RecommendationOutputData outputData = new RecommendationOutputData(List.of(recommendation));
-            recoOutputBoundary.loadSuccessView(outputData);
+            recoPresenter.loadSuccessView(outputData);
 
         } catch (Exception e) {
-            recoOutputBoundary.loadFailureView(e.getMessage());
+            recoPresenter.loadFailureView(e.getMessage());
         }
     }
 }

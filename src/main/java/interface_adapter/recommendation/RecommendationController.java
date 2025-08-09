@@ -5,14 +5,14 @@ import use_case.recommendation.RecommendationInputData;
 import use_case.recommendation.RecommendationInteractor;
 
 public class RecommendationController {
-    final RecommendationInputBoundary recommendationInputBoundary;
+    final RecommendationInputBoundary recommendationInteractor;
 
-    public RecommendationController(RecommendationInputBoundary recommendationInputBoundary) {
-        this.recommendationInputBoundary = recommendationInputBoundary;
+    public RecommendationController(RecommendationInputBoundary recommendationInteractor) {
+        this.recommendationInteractor = recommendationInteractor;
     }
 
     public void execute(String prompt, String postalCode) {
         final RecommendationInputData inputData = new RecommendationInputData(prompt, postalCode);
-        recommendationInputBoundary.execute(inputData);
+        recommendationInteractor.execute(inputData);
     }
 }

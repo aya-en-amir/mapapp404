@@ -10,4 +10,8 @@ public interface LoginOutputBoundary {
      */
     void loadSuccessView(LoginOutputData outputData);
 
+    /**
+     * Switches to the Login View.
+     */
+    void switchToRecommendationView();
 }

@@ -14,7 +14,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecommendationView extends JFrame implements PropertyChangeListener, ActionListener {
+public class RecommendationView extends JPanel implements PropertyChangeListener, ActionListener {
     public JButton viewMapButton;
     private RecommendationController recommendationController;
     private RecommendationViewModel recommendationViewModel;
@@ -24,13 +24,12 @@ public class RecommendationView extends JFrame implements PropertyChangeListener
         this.recommendationViewModel.addPropertyChangeListener(this);
         List<Recommendation> recommendations = recommendationViewModel.getState().getRecommendations();
 
-//        Font mainFont = new Font("SansSerif", Font.BOLD, 18);
-//        Font labelFont = new Font("SansSerif", Font.PLAIN, 14);
-
-        setTitle("Top 5 Recommendations");
-        setSize(700, 500);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        final JLabel title = new JLabel("Top 5 Recommendations");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        setTitle("Top 5 Recommendations");
+        setSize(700,500);
+//        setLocationRelativeTo(null);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JEditorPane resultPane = new JEditorPane();
@@ -86,7 +85,8 @@ public class RecommendationView extends JFrame implements PropertyChangeListener
         });
 
         JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dispose());
+//        closeButton.addActionListener(e -> dispose());
+        closeButton.addActionListener(e -> System.exit(0));
 
         buttonPanel.add(viewMapButton);
         buttonPanel.add(closeButton);
@@ -94,7 +94,6 @@ public class RecommendationView extends JFrame implements PropertyChangeListener
         add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
-
     }
 
     @Override
@@ -112,5 +111,8 @@ public class RecommendationView extends JFrame implements PropertyChangeListener
         for (Recommendation recommendation : listRecommendation) {
             add(new JLabel(recommendation.toString()));
         }
+    }
+
+    public void setRecommendationController(RecommendationController recommendationController) {
     }
 }

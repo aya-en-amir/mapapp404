@@ -1,12 +1,14 @@
 package interface_adapter.login;
 
+import entity.Recommendation;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.recommendation.RecommendationController;
+import interface_adapter.recommendation.RecommendationState;
 import interface_adapter.recommendation.RecommendationViewModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+import use_case.recommendation.RecommendationInputBoundary;
+
+import java.util.List;
 
 /**
  * The Presenter for the Login Use Case.
@@ -22,12 +24,31 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.viewManagerModel = viewManagerModel;
         this.loginViewModel = loginViewModel;
         this.recommendationViewModel = recommendationViewModel;
+
     }
 
     @Override
     public void loadSuccessView(LoginOutputData response) {
+//        final LoginState loginState = loginViewModel.getState();
+//        loginState.setUsername(response.getUsername());
+//        this.loginViewModel.setState(loginState);
+//        loginViewModel.firePropertyChanged();
+
+        List<Recommendation> recommendationList = recommendationViewModel.getState().getRecommendations();
+        final RecommendationState recommendationState = recommendationViewModel.getState();
+        recommendationState.setRecommendation(recommendationList);
+        recommendationViewModel.setState(recommendationState);
+        recommendationViewModel.firePropertyChanged();
+
         viewManagerModel.setState("recommendation");
         viewManagerModel.firePropertyChanged();
     }
+
+    @Override
+    public void switchToRecommendationView() {
+        viewManagerModel.setState(recommendationViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
 
 }

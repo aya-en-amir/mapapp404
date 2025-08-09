@@ -40,7 +40,7 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
 
     public LoginView(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
-        this.loginViewModel.addPropertyChangeListener(this);
+        loginViewModel.addPropertyChangeListener(this);
 
         final JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -82,6 +82,7 @@ public class LoginView  extends JPanel implements ActionListener, PropertyChange
                 return;
             }
             loginController.execute(username, postalCode);
+            loginController.switchToRecommendationView();
             recommendationController.execute(vibe, postalCode);
 //            AppController controller = new AppController();
 //            controller.getRecommendations(vibe);
