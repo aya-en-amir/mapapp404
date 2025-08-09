@@ -4,11 +4,7 @@
 
 ## Authors:
 
-- Enaya Amir
-- Haeun Goo
-- Ira Ara
-- Isha Ruparelia
-- Olivia Boyle
+Enaya Amir, Haeun Goo, Ira Ara, Isha Ruparelia, Olivia Boyle
 
 
 
@@ -160,14 +156,7 @@ The map view of the locations.
 Rules and guidelines for valid feedback consist of 3 main points. The points include, (1) One thing you enjoyed about our software (front-end or back-end is acceptable). (2) One thing you did not enjoy. (3) One thing that could've been more improved. Please be sure to list out all three points in the following feedback form:
 
 
- Clearly says how users can give feedback on the software (via Google Forms,
-a discussion board, etc.)
-
- Clearly provides any necessary links (for example, to a Google Form)
-
- Has rules for what counts as valid feedback
-
- Has guidelines for what to expect when submitting feedback
+[https://docs.google.com/forms/d/e/1FAIpQLSfPoqcIo9gPutUcTL5bcXASE0s6O8cvfxobFAL9fK4LXb4MAw/viewform?usp=header]
 
 
 
