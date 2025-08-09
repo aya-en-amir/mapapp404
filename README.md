@@ -157,7 +157,8 @@ The map view of the locations.
 
 # [Feedback](#feedback)
 
-Rules and guidelines for valid feedback include,
+Rules and guidelines for valid feedback consist of 3 main points. The points include, (1) One thing you enjoyed about our software (front-end or back-end is acceptable). (2) One thing you did not enjoy. (3) One thing that could've been more improved. Please be sure to list out all three points in the following feedback form:
+
 
  Clearly says how users can give feedback on the software (via Google Forms,
 a discussion board, etc.)
