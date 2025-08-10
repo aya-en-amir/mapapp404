@@ -1,9 +1,20 @@
 package use_case.login;
 
-/*
-LoginInputBoundary --> defines how the outer layers can interact with the login use-case
+/**
+ * Input boundary for login.
  */
 public interface LoginInputBoundary {
+
+    /**
+     * Implement the login use case.
+     *
+     * @param loginInputData input data for login
+     */
     void execute(LoginInputData loginInputData);
+
+    /**
+     * Switch to RecommendationView
+     */
+    void switchToRecommendationView();
 }
 

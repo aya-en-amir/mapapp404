@@ -2,6 +2,8 @@ package view;
 
 import entity.Location;
 import entity.Recommendation;
+import interface_adapter.recommendation.RecommendationController;
+import interface_adapter.recommendation.RecommendationViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +12,15 @@ import java.util.List;
 
 public class RecommendationView extends JFrame {
     public JButton viewMapButton;
+    private RecommendationController recommendationController;
+    private RecommendationViewModel recommendationViewModel;
 
-    public RecommendationView(List<Recommendation> recommendations) {
+    public RecommendationView(RecommendationViewModel recommendationViewModel) {
 //        Font mainFont = new Font("SansSerif", Font.BOLD, 18);
 //        Font labelFont = new Font("SansSerif", Font.PLAIN, 14);
+        this.recommendationViewModel = recommendationViewModel;
+        List<Recommendation> recommendations = recommendationViewModel.getState().getRecommendations();
+
 
         setTitle("Top 5 Recommendations");
         setSize(700,500);
@@ -82,5 +89,8 @@ public class RecommendationView extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
+    }
+    public void setRecommendationController(RecommendationController recommendationController) {
+        this.recommendationController = recommendationController;
     }
 }

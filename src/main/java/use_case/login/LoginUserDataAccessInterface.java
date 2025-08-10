@@ -1,8 +1,8 @@
-package interface_service;
+package use_case.login;
 
 import entity.User;
 
-public interface UserDataAccessInterface {
+public interface LoginUserDataAccessInterface {
     /**
      * Save a specific user.
      * @param user the current user's information
@@ -32,5 +32,10 @@ public interface UserDataAccessInterface {
      */
     void setCurrentUsername(String username);
 
+    /**
+     * Check if the username exists
+     * @param username the name of the current user
+     */
+    boolean existsByName(String username);
 
 }
