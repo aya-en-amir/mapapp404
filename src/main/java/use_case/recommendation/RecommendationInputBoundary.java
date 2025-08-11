@@ -8,5 +8,5 @@ public interface RecommendationInputBoundary {
      * Implement the recommendation use case.
      * @param inputData input data for login
      */
-    void execute (RecommendationInputData inputData);
+    void execute (RecommendationInputData inputData) throws Exception;
 }

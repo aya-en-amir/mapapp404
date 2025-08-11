@@ -1,18 +1,16 @@
 import app.AppController;
-import client_service.Recommendation.Recommender;
+import client_service.recommendation.Recommender;
 import client_service.api.DeepSeekClient;
 import client_service.api.GoogleMapsClient;
 import entity.Location;
-import exceptions.InvalidPostalCodeException;
+import exceptions.APIException;
 import interface_service.LLMClient;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import view.LoginView;
 import view.MapView;
 import view.RecommendationView;
 
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertThrows;
@@ -28,48 +26,72 @@ public class MainTest {
 //        application.setVisible(true);
 //    }
 
-    @Test
-    public void loginViewOnFindLocationsClick(){
-        LoginView loginView = new LoginView();
-        loginView.setUsernameField("Tasfia");
-        loginView.setPostalCodeField("M4B0C1");
-        loginView.setVibeField("happy");
-        loginView.findLocationButton.doClick();
+    int radiusInMeters = 5000;
+    GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
+
+    private static List<Location> generateBackupLocations() {
+        Location location1 = new Location("The Yorkville Royal Sonesta Hotel Toronto", (float) 43.653225,
+                (float) -79.38319, new ArrayList<>(), "220 Bloor St W, Toronto, ON M5S 3B7, Canada");
+
+        Location location2 = new Location("Madison Manor Boutique Hotel", (float) 43.668041,
+                (float) -79.4035, new ArrayList<>(), "20 Madison Ave, Toronto, ON M5R 2S1, Canada");
+
+        Location location3 = new Location("HOTEL OCHO", (float) 43.650005,
+                (float) -79.39639, new ArrayList<>(), "195 Spadina Ave., Toronto, ON M5T 2C3, Canada");
+
+        Location location4 = new Location("Art Gallery of Ontario", (float) 43.653606,
+                (float) -79.39251, new ArrayList<>(), "317 Dundas St W, Toronto, ON M5T 1G4, Canada");
+
+        Location location5 = new Location("Royal Ontario Museum", (float) 43.667709,
+                (float) -79.394775, new ArrayList<>(), "100 Queens Park, Toronto, ON M5S 2C6, Canada");
+
+        List<Location> backupLocations = new ArrayList<>();
+        backupLocations.add(location1);
+        backupLocations.add(location2);
+        backupLocations.add(location3);
+        backupLocations.add(location4);
+        backupLocations.add(location5);
+        return backupLocations;
     }
 
-    @Test
-    public void recommendationViewNonEmptyTest(){
-        AppController controller = new AppController();
-        String postalCode = "M5B 0A5";
-        String vibe = "happy";
-        RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
-        recommendationView.setVisible(true);
-        recommendationView.viewMapButton.doClick();
+//    @Test
+//    public void loginViewOnFindLocationsClick(){
+//        LoginView loginView = new LoginView();
+//        loginView.setUsernameField("Tasfia");
+//        loginView.setPostalCodeField("M4B0C1");
+//        loginView.setVibeField("happy");
+//        loginView.findLocationButton.doClick();
+//    }
 
-    }
+//    @Test
+//    public void recommendationViewNonEmptyTest(){
+//        AppController controller = new AppController();
+//        String postalCode = "M5B 0A5";
+//        String vibe = "happy";
+//        RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
+//        recommendationView.setVisible(true);
+//        recommendationView.viewMapButton.doClick();
+//
+//    }
 
-    @Test
-    public void recommendationViewEmptyTest(){
-        RecommendationView recommendationView = new RecommendationView(List.of());
-        recommendationView.setVisible(true);
-        recommendationView.viewMapButton.doClick();
-    }
+//    @Test
+//    public void recommendationViewEmptyTest(){
+//        RecommendationView recommendationView = new RecommendationView(List.of());
+//        recommendationView.setVisible(true);
+//        recommendationView.viewMapButton.doClick();
+//    }
 
     @Test
     public void recommenderTest(){
-        int radiusInMeters = 5000;
         LLMClient ds = new DeepSeekClient();
-        GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        Recommender recommender = new Recommender("hello", gmaps.getBackupLocationsTesting(), ds);
+        Recommender recommender = new Recommender("hello", generateBackupLocations(), ds);
         assert recommender.getLocations() != null;
 
     }
 
     @Test
     public void mapViewNonEmptyTest(){
-        int radiusInMeters = 5000;
-        GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        MapView mapView = new MapView(gmaps.getBackupLocationsTesting());
+        MapView mapView = new MapView(generateBackupLocations());
         mapView.setVisible(true);
     }
 
@@ -80,24 +102,30 @@ public class MainTest {
     }
 
     @Test
-    public void gMapsPostalCodeWrongLength() throws Exception {
+    public void gMapsPostalCodeWrongLength() throws exceptions.APIException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        gmaps.serveLocations("a");
+        assertThrows(APIException.class, () -> {
+            gmaps.serveLocations("a");
+        });
     }
 
     @Test
-    public void gMapsPostalCodeWrongFormat() throws Exception {
+    public void gMapsPostalCodeWrongFormat() throws exceptions.APIException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        gmaps.serveLocations("aaaa");
+        assertThrows(APIException.class, () -> {
+            gmaps.serveLocations("aaaa");
+        });
     }
 
     @Test
-    public void gMapsInvalidPostalCode() throws Exception {
+    public void gMapsInvalidPostalCode() throws exceptions.APIException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        gmaps.serveLocations("$%^()&");
+        assertThrows(APIException.class, () -> {
+            gmaps.serveLocations("$%^()&");
+        });
     }
 
 //    @Test

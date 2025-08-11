@@ -1,6 +1,6 @@
 package use_case.recommendation;
 
-import client_service.Recommendation.Recommender;
+import client_service.recommendation.Recommender;
 import client_service.api.DeepSeekClient;
 import client_service.api.GoogleMapsClient;
 import entity.Location;
@@ -14,24 +14,20 @@ import java.util.List;
  * The Recommendation Interactor.
  */
 public class RecommendationInteractor implements RecommendationInputBoundary{
-    private final RecommendationDataAccessInterface recoDataAccessObject;
     private final RecommendationOutputBoundary recoPresenter;
 
-    public RecommendationInteractor(RecommendationDataAccessInterface recoDataAccessObject,
-                                    RecommendationOutputBoundary recoPresenter) {
-        this.recoDataAccessObject = recoDataAccessObject;
+    public RecommendationInteractor(RecommendationOutputBoundary recoPresenter) {
         this.recoPresenter = recoPresenter;
     }
 
     @Override
-    public void execute(RecommendationInputData recoInputData) {
+    public void execute(RecommendationInputData recoInputData) throws Exception{
         final String prompt = recoInputData.getPrompt();
         final String postalCode = recoInputData.getPostalCode();
 
         try {
             LLMClient llmClient = new DeepSeekClient();
             final int radiusInMeters = 5000;
-//            final String postalCode = "M5S 2E4";
 
             GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
             List<Location> locations = client.serveLocations(postalCode);

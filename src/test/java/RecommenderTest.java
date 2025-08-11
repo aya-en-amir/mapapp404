@@ -1,5 +1,5 @@
 
-import client_service.Recommendation.Recommender;
+import client_service.recommendation.Recommender;
 import client_service.api.DeepSeekClient;
 import entity.Location;
 import interface_service.LLMClient;

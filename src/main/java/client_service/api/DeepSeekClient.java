@@ -52,20 +52,6 @@ public class DeepSeekClient implements LLMClient {
     public String getLLMResponse(String prompt) {
         String llmResponse = "";
         try{
-//            String request = "{\n" +
-//                    "          \"model\": \"deepseek/deepseek-chat-v3-0324:free\",\n" +
-//                    "          \"messages\": [\n" +
-//                    "            {\"role\": \"user\", " +
-//                    "            \"content\": \"" + prompt + "\"}\n" +
-//                    "          ]\n" +
-//                    "        }";
-//            HttpRequest httpRequest = HttpRequest.newBuilder()
-//                    .uri(URI.create(getEndpoint()))
-//                    .header("Authorization", "Bearer " + getAPI_KEY())
-//                    .POST(BodyPublishers.ofString(request))
-//                    .build();
-//            HttpClient client = HttpClient.newHttpClient();
-//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             Map<String, Object> payload = new HashMap<>();
             payload.put("model", "deepseek/deepseek-chat-v3-0324:free");
             payload.put("messages", List.of(new Message("user", prompt)));
@@ -112,14 +98,6 @@ public class DeepSeekClient implements LLMClient {
             JSONObject message = ((JSONObject)choices.get(0)).getJSONObject("message");
             String content = message.getString("content");
             return content;
-
-
-
-//        int startCurly = content.indexOf("{");
-//        int endCurly = content.indexOf("}");
-//        String response = content.substring(startCurly+1, endCurly);
-//        ArrayList<String> responseList = new ArrayList<>(Arrays.asList(response.split(", ")));
-//        return responseList;
     }
 
 

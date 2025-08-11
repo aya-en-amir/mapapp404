@@ -1,4 +1,4 @@
-package client_service.Recommendation;
+package client_service.recommendation;
 
 import entity.Location;
 import entity.Recommendation;
