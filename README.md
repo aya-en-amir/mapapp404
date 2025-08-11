@@ -144,7 +144,7 @@ The top 5 suitable location are displayed.
 
 The map view of the locations. 
 
-<img width="1054" height="508" alt="image" src="https://github.com/user-attachments/assets/a38c41c7-0ccf-4d38-8516-271ae1c7ecbc" />
+<img width="801" height="600" alt="image" src="https://github.com/user-attachments/assets/6febeaa8-0297-453c-bc20-3b67b60c05c2" />
 
 
 
