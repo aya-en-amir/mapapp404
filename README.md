@@ -127,7 +127,7 @@ On the back-end, this program uses DeepSeek in order to find common synonyms for
 
 User fills in their mood and current location postal code. 
 
-<img width="499" height="196" alt="Screenshot 2025-07-30 at 10 02 34 PM" src="https://github.com/user-attachments/assets/8f575995-dc0b-4924-b92f-72c880a7f128" />
+<img width="621" height="228" alt="image" src="https://github.com/user-attachments/assets/f596c1c1-3620-4e51-9231-eabb24ba68ce" />
 
 
 
@@ -135,7 +135,7 @@ User fills in their mood and current location postal code.
 
 The top 5 suitable location are displayed. 
 
-<img width="665" height="358" alt="image" src="https://github.com/user-attachments/assets/4c03451e-e9f0-400e-b08c-80ca88c6abe1" />
+<img width="697" height="499" alt="image" src="https://github.com/user-attachments/assets/d334c4e1-096e-4ffe-8ca1-60aa4cf6cb9e" />
 
 
 
@@ -144,7 +144,7 @@ The top 5 suitable location are displayed.
 
 The map view of the locations. 
 
-<img width="801" height="600" alt="image" src="https://github.com/user-attachments/assets/6febeaa8-0297-453c-bc20-3b67b60c05c2" />
+<img width="800" height="601" alt="image" src="https://github.com/user-attachments/assets/4f23be7d-617e-4a5a-af77-ac55a0dbb749" />
 
 
 
