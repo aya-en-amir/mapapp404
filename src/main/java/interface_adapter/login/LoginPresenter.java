@@ -6,7 +6,6 @@ import interface_adapter.recommendation.RecommendationState;
 import interface_adapter.recommendation.RecommendationViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
-import use_case.recommendation.RecommendationInputBoundary;
 import view.RecommendationView;
 
 import java.util.List;
@@ -30,11 +29,6 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void loadSuccessView(LoginOutputData response) {
-//        final LoginState loginState = loginViewModel.getState();
-//        loginState.setUsername(response.getUsername());
-//        this.loginViewModel.setState(loginState);
-//        loginViewModel.firePropertyChanged();
-
         List<Recommendation> recommendationList = recommendationViewModel.getState().getRecommendations();
         final RecommendationState recommendationState = recommendationViewModel.getState();
         recommendationState.setRecommendation(recommendationList);

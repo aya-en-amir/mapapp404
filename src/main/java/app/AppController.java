@@ -20,7 +20,6 @@ import use_case.recommendation.RecommendationOutputBoundary;
 import view.LoginView;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class AppController {
     private final JPanel cardPanel = new JPanel();
@@ -31,7 +30,7 @@ public class AppController {
     private RecommendationViewModel recommendationViewModel = new RecommendationViewModel();
 
 
-    public AppController addLoginView() {
+    public AppController addLoginView() throws Exception{
         loginView = new LoginView(loginViewModel);
         cardPanel.add(loginView, loginView.getViewName());
         return this;
@@ -58,11 +57,10 @@ public class AppController {
         return loginController;
     }
 
-    private @NotNull RecommendationController getRecommendationController() {
+    public @NotNull RecommendationController getRecommendationController() {
         final RecommendationOutputBoundary recommendationOutputBoundary = new RecommendationPresenter(recommendationViewModel,
                 viewManagerModel);
-        final RecommendationInputBoundary recommendationInteractor = new RecommendationInteractor(userDataAccessObject,
-                recommendationOutputBoundary);
+        final RecommendationInputBoundary recommendationInteractor = new RecommendationInteractor(recommendationOutputBoundary);
         final RecommendationController recommendationController = new RecommendationController(recommendationInteractor);
         return recommendationController;
     }
@@ -75,6 +73,10 @@ public class AppController {
         application.setLocationRelativeTo(null);
         application.setVisible(true);
         return application;
+    }
+
+    public RecommendationViewModel getRecommendationViewModel() {
+        return recommendationViewModel;
     }
 }
 

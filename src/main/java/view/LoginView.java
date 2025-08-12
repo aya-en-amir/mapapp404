@@ -19,7 +19,7 @@ import java.beans.PropertyChangeListener;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    final String viewName = "Log In";
+    final String viewName = "Register";
 
     private final JTextField usernameField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
@@ -35,7 +35,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     public JButton findLocationButton;
 
-    public LoginView(LoginViewModel loginViewModel) {
+    public LoginView(LoginViewModel loginViewModel) throws Exception {
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
 
@@ -75,7 +75,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         findLocationButton.setSize(60, 45);
         buttons.add(findLocationButton);
 
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -88,9 +87,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.add(buttons);
 
         findLocationButton.addActionListener(e -> {
-            String username = usernameField.getText();
-            String postalCode = postalCodeInputField.getText();
-            String vibe = vibeField.getText();
+            String username = usernameField.getText().trim();
+            String postalCode = postalCodeInputField.getText().trim();
+            String vibe = vibeField.getText().trim();
 
             if (username.isEmpty() || postalCode.isEmpty() || vibe.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
@@ -100,10 +99,23 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 return;
             }
 
-            loginController.execute(username, postalCode);
-            recommendationController.execute(vibe, username);
-            loginController.switchToRecommendationView();
+            findLocationButton.setEnabled(false);
 
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    loginController.execute(username, postalCode);
+                    recommendationController.execute(vibe, postalCode);
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    findLocationButton.setEnabled(true);
+                    loginController.switchToRecommendationView();
+                }
+            };
+            worker.execute();
         });
 
     }

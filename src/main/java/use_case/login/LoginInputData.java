@@ -1,15 +1,10 @@
 package use_case.login;
 
-/*
+/**
 Class implementing how login data would be stored
 i.e creates a new User with email, name, password and postal code and starts a new UserSession
  */
-
 import entity.User;
-import entity.UserSession;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginInputData {
     private User user;
