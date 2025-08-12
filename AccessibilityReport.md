@@ -25,7 +25,7 @@
     The progam could allow the users to adjust font size or view mode to ensure that the interface remains comfortable for users with varying needs.
 
    ##
-   The program is suitable for a wide range of people. It is ideal for local residents and tourists looking for new places to discover in their neighborhood. 
+The program is suitable for a wide range of people. It is ideal for local residents and tourists looking for new places to discover in their neighborhood. 
 Additionally, it is suitable for people who can't make their choices easily, since the program provides the top 5 places that match with the user's emotional state.
 
 ##
