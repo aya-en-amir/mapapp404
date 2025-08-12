@@ -1,6 +1,5 @@
 package interface_adapter.recommendation;
 
-import entity.Location;
 import entity.Recommendation;
 
 import java.util.ArrayList;

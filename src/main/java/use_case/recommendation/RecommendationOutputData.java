@@ -1,6 +1,5 @@
 package use_case.recommendation;
 
-import entity.Location;
 import entity.Recommendation;
 
 import java.util.List;

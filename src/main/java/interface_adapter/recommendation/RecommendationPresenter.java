@@ -4,7 +4,6 @@ import interface_adapter.ViewManagerModel;
 import use_case.recommendation.RecommendationOutputBoundary;
 import use_case.recommendation.RecommendationOutputData;
 
-import javax.swing.text.View;
 import java.util.List;
 
 public class RecommendationPresenter implements RecommendationOutputBoundary {
