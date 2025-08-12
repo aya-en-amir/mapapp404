@@ -3,10 +3,16 @@ import client_service.recommendation.Recommender;
 import client_service.api.DeepSeekClient;
 import client_service.api.GoogleMapsClient;
 import entity.Location;
+import entity.Recommendation;
+import entity.User;
 import exceptions.APIException;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationState;
 import interface_adapter.recommendation.RecommendationViewModel;
 import interface_service.LLMClient;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import view.LoginView;
 import view.MapView;
@@ -14,9 +20,12 @@ import view.RecommendationView;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 public class MainTest {
 //    @Test
@@ -87,11 +96,67 @@ public class MainTest {
     }
 
     @Test
-    public void recommenderTest(){
+    public void recommendationViewNonEmptyTest(){
+        RecommendationViewModel recViewModel = new RecommendationViewModel();
+        //Recommender recommender = new Recommender("happy", generateBackupLocations(), ds);
+//        List<Location> locations = generat
+        Recommendation recommendation = new Recommendation(generateBackupLocations());
+        List<Recommendation> recommendationList = new ArrayList<>();
+        recommendationList.add(recommendation);
+        RecommendationState recommendationState = new RecommendationState();
+        recommendationState.setRecommendation(recommendationList);
+        recViewModel.setState(recommendationState);
+        RecommendationView recommendationView = new RecommendationView(recViewModel);
+        recommendationView.setVisible(true);
+    }
+
+    @Test
+    public void recommenderTestBackupLocations(){
         LLMClient ds = new DeepSeekClient();
         Recommender recommender = new Recommender("hello", generateBackupLocations(), ds);
         assert recommender.getLocations() != null;
 
+    }
+
+    @Test
+    public void recommenderTestLLMParser(){
+        LLMClient ds = new DeepSeekClient();
+        Recommender recommender = new Recommender("happy", generateBackupLocations(), ds);
+        assert recommender.recommend() != null;
+    }
+
+    @Test
+    public void LoginStateTestUsernameTest(){
+        LoginState loginState = new LoginState();
+        loginState.setUsername("Tasfia") ;
+        assert Objects.equals(loginState.getUsername(), "Tasfia");
+
+    }
+
+    @Test
+    public void LoginStateTestSetLoginError(){
+        LoginState loginState = new LoginState();
+        loginState.setUsername("Tasfia") ;
+        loginState.setLoginError("This user doesn't exist");
+        assert(loginState.getLoginError() != null);
+    }
+
+    @Test
+    public void LoginStatePostalCodeTest(){
+        LoginState loginState = new LoginState();
+        assert(loginState.getPostalCode() != null);
+
+    }
+
+    @Test
+    public void UserTest(){
+        User newUser = new User("Tasfia", "Blablabla");
+
+        assert (newUser.getUserName().equals("Tasfia"));
+        assert (newUser.getPostalCode().equals("Blablabla"));
+
+        newUser.setPostalCode("A0B 0C0");
+        assert (newUser.getPostalCode().equals("A0B 0C0"));
     }
 
     @Test
@@ -155,7 +220,15 @@ public class MainTest {
         newloc.setLongitude(23.4f);
         newloc.setAddress("some NEW address");
         newloc.setReviews(List.of("very cool", "coolio"));
+        assert(newloc.getAddress() != null);
         assert newloc.getReviews().equals(List.of("very cool", "coolio"));
+    }
+
+    @Test
+    public void recommendationTest(){
+        List<Location> locations = generateBackupLocations();
+        Recommendation recommendation = new Recommendation(locations);
+        assert recommendation.getLocations() != null;
     }
 
 
