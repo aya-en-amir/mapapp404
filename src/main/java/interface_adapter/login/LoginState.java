@@ -22,10 +22,6 @@ public class LoginState {
         this.loginError = usernameError;
     }
 
-    public String getPrompt() {
-        return prompt;
-    }
-
     public String getPostalCode() {
         return postalCode;
     }
