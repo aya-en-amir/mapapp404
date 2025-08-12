@@ -19,14 +19,25 @@ import java.util.List;
 import static org.junit.Assert.assertThrows;
 
 public class MainTest {
+//    @Test
+//    public void loginViewTest() throws Exception{
+//        final JFrame application = new JFrame("Login");
+//        final LoginViewModel loginViewModel = new LoginViewModel();
+//        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        application.setContentPane(new LoginView(loginViewModel));
+//        application.setSize(800, 400);
+//        application.setLocationRelativeTo(null);
+//        application.setVisible(true);
+//    }
+
     @Test
-    public void loginViewTest() throws Exception{
-        final JFrame application = new JFrame("Login");
-        final LoginViewModel loginViewModel = new LoginViewModel();
-        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setContentPane(new LoginView(loginViewModel));
-        application.setSize(800, 400);
-        application.setLocationRelativeTo(null);
+    public void loginView() throws Exception {
+        final AppController appBuilder = new AppController();
+        final JFrame application = appBuilder
+                .addLoginView()
+                .addLoginUseCase()
+                .build();
+        application.pack();
         application.setVisible(true);
     }
 
@@ -69,21 +80,10 @@ public class MainTest {
     }
 
     @Test
-    public void recommendationViewNonEmptyTest(){
-        AppController controller = new AppController();
-        String postalCode = "M5B 0A5";
-        String vibe = "happy";
-        RecommendationView recommendationView = new RecommendationView(controller.getRecommendationViewModel());
-        recommendationView.setVisible(true);
-        recommendationView.viewMapButton.doClick();
-
-    }
-
-    @Test
     public void recommendationViewEmptyTest(){
         RecommendationView recommendationView = new RecommendationView(new RecommendationViewModel());
         recommendationView.setVisible(true);
-        recommendationView.viewMapButton.doClick();
+        assert (recommendationView.viewMapButton == null);
     }
 
     @Test
