@@ -103,7 +103,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
-                protected Void doInBackground(): {
+                protected Void doInBackground() throws Exception {
                     loginController.execute(username, postalCode);
                     recommendationController.execute(vibe, postalCode);
                     return null;
