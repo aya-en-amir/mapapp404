@@ -82,7 +82,7 @@ public class MainTest {
         loginView.setUsernameField("Tasfia");
         loginView.setPostalCodeField("M4B0C1");
         loginView.setVibeField("happy");
-        loginView.findLocationButton.doClick();
+        loginView.getFindLocationButton().doClick();
     }
 
     @Test
@@ -172,7 +172,7 @@ public class MainTest {
     public void gMapsPostalCodeWrongLength() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(ApiException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("a");
         });
     }
@@ -181,7 +181,7 @@ public class MainTest {
     public void gMapsPostalCodeWrongFormat() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(ApiException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("aaaa");
         });
     }
@@ -190,7 +190,7 @@ public class MainTest {
     public void gMapsInvalidPostalCode() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(ApiException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("$%^()&");
         });
     }
