@@ -1,16 +1,21 @@
 package view;
 
-import org.jxmapviewer.JXMapViewer;
-import org.jxmapviewer.OSMTileFactoryInfo;
-import org.jxmapviewer.viewer.*;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import entity.Location;
 
+import javax.swing.JFrame;
+
+import org.jxmapviewer.JXMapViewer;
+import org.jxmapviewer.OSMTileFactoryInfo;
+import org.jxmapviewer.viewer.DefaultTileFactory;
+import org.jxmapviewer.viewer.DefaultWaypoint;
+import org.jxmapviewer.viewer.GeoPosition;
+import org.jxmapviewer.viewer.Waypoint;
+import org.jxmapviewer.viewer.WaypointPainter;
+
+import entity.Location;
 
 public class MapView extends JFrame {
 
@@ -34,7 +39,7 @@ public class MapView extends JFrame {
             mapViewer.setAddressLocation(center);
         }
 
-        //display red dots to show each location on map.
+        // display red dots to show each location on the map.
         Set<Waypoint> waypoints = new HashSet<>();
         for (Location loc : locations) {
             waypoints.add(new DefaultWaypoint(new GeoPosition(loc.getLatitude(), loc.getLongitude())));

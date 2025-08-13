@@ -12,15 +12,15 @@ public class User {
         this.postalCode = postalCode;
     }
 
-    public String getUserName() {
+    public final String getUserName() {
         return userName;
     }
 
-    public String getPostalCode() {
+    public final String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
+    public final void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 }

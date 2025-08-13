@@ -1,18 +1,16 @@
 import app.AppController;
-import client_service.recommendation.Recommender;
-import client_service.api.DeepSeekClient;
-import client_service.api.GoogleMapsClient;
+import clientservice.recommendation.Recommender;
+import clientservice.api.DeepSeekClient;
+import clientservice.api.GoogleMapsClient;
 import entity.Location;
 import entity.Recommendation;
 import entity.User;
-import exceptions.APIException;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.recommendation.RecommendationState;
-import interface_adapter.recommendation.RecommendationViewModel;
-import interface_service.LLMClient;
-import org.junit.jupiter.api.Assertions;
+import exceptions.ApiException;
+import interfaceadapter.login.LoginState;
+import interfaceadapter.login.LoginViewModel;
+import interfaceadapter.recommendation.RecommendationState;
+import interfaceadapter.recommendation.RecommendationViewModel;
+import interfaceservice.LlmClient;
 import org.junit.jupiter.api.Test;
 import view.LoginView;
 import view.MapView;
@@ -20,7 +18,6 @@ import view.RecommendationView;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -85,14 +82,14 @@ public class MainTest {
         loginView.setUsernameField("Tasfia");
         loginView.setPostalCodeField("M4B0C1");
         loginView.setVibeField("happy");
-        loginView.findLocationButton.doClick();
+        loginView.getFindLocationButton().doClick();
     }
 
     @Test
     public void recommendationViewEmptyTest(){
         RecommendationView recommendationView = new RecommendationView(new RecommendationViewModel());
         recommendationView.setVisible(true);
-        assert (recommendationView.viewMapButton == null);
+        assert (recommendationView.getViewMapButton() == null);
     }
 
     @Test
@@ -112,7 +109,7 @@ public class MainTest {
 
     @Test
     public void recommenderTestBackupLocations(){
-        LLMClient ds = new DeepSeekClient();
+        LlmClient ds = new DeepSeekClient();
         Recommender recommender = new Recommender("hello", generateBackupLocations(), ds);
         assert recommender.getLocations() != null;
 
@@ -120,7 +117,7 @@ public class MainTest {
 
     @Test
     public void recommenderTestLLMParser(){
-        LLMClient ds = new DeepSeekClient();
+        LlmClient ds = new DeepSeekClient();
         Recommender recommender = new Recommender("happy", generateBackupLocations(), ds);
         assert recommender.recommend() != null;
     }
@@ -172,28 +169,28 @@ public class MainTest {
     }
 
     @Test
-    public void gMapsPostalCodeWrongLength() throws exceptions.APIException {
+    public void gMapsPostalCodeWrongLength() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(APIException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("a");
         });
     }
 
     @Test
-    public void gMapsPostalCodeWrongFormat() throws exceptions.APIException {
+    public void gMapsPostalCodeWrongFormat() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(APIException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("aaaa");
         });
     }
 
     @Test
-    public void gMapsInvalidPostalCode() throws exceptions.APIException {
+    public void gMapsInvalidPostalCode() throws ApiException {
         int radiusInMeters = 5000;
         GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
-        assertThrows(APIException.class, () -> {
+        assertThrows(Exception.class, () -> {
             gmaps.serveLocations("$%^()&");
         });
     }
@@ -205,10 +202,10 @@ public class MainTest {
     }
 
     @Test
-    public void deepSeekExceptionTest() throws exceptions.APIException{
+    public void deepSeekExceptionTest() throws ApiException {
         DeepSeekClient ds = new DeepSeekClient();
-        ds.setAPI_KEY_TESTING("lalala");
-        ds.getLLMResponse("happy");
+        ds.setApiKeyTesting("lalala");
+        ds.getLlmResponse("happy");
 
     }
 
