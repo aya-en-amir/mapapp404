@@ -27,7 +27,7 @@
 
    ##
 The program is suitable for a wide range of people. It is ideal for local residents and tourists looking for new places to discover in their neighborhood. 
-Additionally, it is suitable for people who can't make their choices easily, since the program provides the top 5 places that match with the user's emotional state.
+Additionally, it is suitable for people who are indecisive but loves going out, since the program provides the top 5 places that match with the user's emotional state.
 
 However, the program is less likely to be used by individuals with visual impairments because it relies primarily on text to convey information. This creates barries for users who depend on screen readers or other assistive technology. Future improvements could include adding voice commands or speech recognition technology to increase inclusivity of the program. 
 
