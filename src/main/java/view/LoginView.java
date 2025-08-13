@@ -43,7 +43,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     private JButton findLocationButton;
 
-    public LoginView(LoginViewModel loginViewModel) throws Exception {
+    public LoginView(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
 

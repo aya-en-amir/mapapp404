@@ -196,7 +196,7 @@ public class MainTest {
     }
 
     @Test
-    public void appControllerPostalCodeWrongFormatThrowsException() throws Exception {
+    public void appControllerPostalCodeWrongFormatThrowsException() {
         AppController controller = new AppController();
         controller.getRecommendationViewModel();
     }

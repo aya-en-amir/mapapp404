@@ -36,7 +36,6 @@ public class RecommendationInteractor implements RecommendationInputBoundary {
 
         RecommendationOutputData outputData = new RecommendationOutputData(List.of(recommendation));
         recoPresenter.loadSuccessView(outputData);
-
     }
 }
 
