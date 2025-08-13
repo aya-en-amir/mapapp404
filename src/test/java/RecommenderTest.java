@@ -1,5 +1,4 @@
 
-import client_service.recommendation.Recommender;
 import client_service.api.DeepSeekClient;
 import entity.Location;
 import interface_service.LLMClient;
@@ -49,7 +48,7 @@ public class RecommenderTest {
         locations.add(location6);
 
         LLMClient DeepSeekClient = new DeepSeekClient();
-        Recommender locationGiver = new Recommender(prompt, locations, DeepSeekClient);
+        client_service.recommendation.Recommender locationGiver = new client_service.recommendation.Recommender(prompt, locations, DeepSeekClient);
         System.out.println("Recommended location objects: " + locationGiver.recommend());
     }
 }

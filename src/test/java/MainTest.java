@@ -4,12 +4,15 @@ import client_service.api.DeepSeekClient;
 import client_service.api.GoogleMapsClient;
 import entity.Location;
 import exceptions.APIException;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationViewModel;
 import interface_service.LLMClient;
 import org.junit.jupiter.api.Test;
 import view.LoginView;
 import view.MapView;
 import view.RecommendationView;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +20,26 @@ import static org.junit.Assert.assertThrows;
 
 public class MainTest {
 //    @Test
-//    public void loginViewTest(){
+//    public void loginViewTest() throws Exception{
 //        final JFrame application = new JFrame("Login");
+//        final LoginViewModel loginViewModel = new LoginViewModel();
 //        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//        application.setContentPane(new LoginView());
+//        application.setContentPane(new LoginView(loginViewModel));
 //        application.setSize(800, 400);
 //        application.setLocationRelativeTo(null);
 //        application.setVisible(true);
 //    }
+
+    @Test
+    public void loginView() throws Exception {
+        final AppController appBuilder = new AppController();
+        final JFrame application = appBuilder
+                .addLoginView()
+                .addLoginUseCase()
+                .build();
+        application.pack();
+        application.setVisible(true);
+    }
 
     int radiusInMeters = 5000;
     GoogleMapsClient gmaps = new GoogleMapsClient(radiusInMeters);
@@ -54,32 +69,22 @@ public class MainTest {
         return backupLocations;
     }
 
-//    @Test
-//    public void loginViewOnFindLocationsClick(){
-//        LoginView loginView = new LoginView();
-//        loginView.setUsernameField("Tasfia");
-//        loginView.setPostalCodeField("M4B0C1");
-//        loginView.setVibeField("happy");
-//        loginView.findLocationButton.doClick();
-//    }
+    @Test
+    public void loginViewOnFindLocationsClick() throws Exception {
+        final LoginViewModel loginViewModel = new LoginViewModel();
+        LoginView loginView = new LoginView(loginViewModel);
+        loginView.setUsernameField("Tasfia");
+        loginView.setPostalCodeField("M4B0C1");
+        loginView.setVibeField("happy");
+        loginView.findLocationButton.doClick();
+    }
 
-//    @Test
-//    public void recommendationViewNonEmptyTest(){
-//        AppController controller = new AppController();
-//        String postalCode = "M5B 0A5";
-//        String vibe = "happy";
-//        RecommendationView recommendationView = new RecommendationView(controller.getRecommendations(vibe, postalCode));
-//        recommendationView.setVisible(true);
-//        recommendationView.viewMapButton.doClick();
-//
-//    }
-
-//    @Test
-//    public void recommendationViewEmptyTest(){
-//        RecommendationView recommendationView = new RecommendationView(List.of());
-//        recommendationView.setVisible(true);
-//        recommendationView.viewMapButton.doClick();
-//    }
+    @Test
+    public void recommendationViewEmptyTest(){
+        RecommendationView recommendationView = new RecommendationView(new RecommendationViewModel());
+        recommendationView.setVisible(true);
+        assert (recommendationView.viewMapButton == null);
+    }
 
     @Test
     public void recommenderTest(){
@@ -128,11 +133,11 @@ public class MainTest {
         });
     }
 
-//    @Test
-//    public void appControllerPostalCodeWrongFormatThrowsException() throws Exception {
-//        AppController controller = new AppController();
-//        controller.getRecommendations("happy", "aaa");
-//    }
+    @Test
+    public void appControllerPostalCodeWrongFormatThrowsException() throws Exception {
+        AppController controller = new AppController();
+        controller.getRecommendationViewModel();
+    }
 
     @Test
     public void deepSeekExceptionTest() throws exceptions.APIException{
