@@ -1,8 +1,14 @@
 package app;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class Main {
+    /**
+     * Application entry point. Initializes and displays the login interface.
+     *
+     * @param args command-line arguments
+     * @throws Exception if initialization fails
+     */
     public static void main(String[] args) throws Exception {
 
         final AppController appBuilder = new AppController();
@@ -13,6 +19,5 @@ public class Main {
 
         application.pack();
         application.setVisible(true);
-
     }
 }

@@ -1,17 +1,25 @@
 package view;
 
-import app.AppController;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.recommendation.RecommendationController;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingWorker;
+
+import interfaceadapter.login.LoginController;
+import interfaceadapter.login.LoginState;
+import interfaceadapter.login.LoginViewModel;
+import interfaceadapter.recommendation.RecommendationController;
 
 /**
  * The View for when the user is logging into the program.
@@ -19,7 +27,7 @@ import java.beans.PropertyChangeListener;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    final String viewName = "Register";
+    private final String viewName = "Register";
 
     private final JTextField usernameField = new JTextField(15);
     private final JLabel usernameErrorField = new JLabel();
@@ -33,22 +41,19 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private LoginController loginController;
     private RecommendationController recommendationController;
 
-    public JButton findLocationButton;
+    private JButton findLocationButton;
 
     public LoginView(LoginViewModel loginViewModel) throws Exception {
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
 
-
-        // Set bigger fonts
-        Font labelFont = new Font("SansSerif", Font.PLAIN, 16);   // labels
-        Font fieldFont = new Font("SansSerif", Font.PLAIN, 16);   // text fields
-        Font buttonFont = new Font("SansSerif", Font.BOLD, 18);   // button
-        Font titleFont = new Font("SansSerif", Font.BOLD, 24);    // title
-
         final JLabel title = new JLabel(viewName);
+        Font titleFont = new Font("SansSerif", Font.BOLD, 24);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(titleFont);
+
+        Font labelFont = new Font("SansSerif", Font.PLAIN, 16);
+        Font fieldFont = new Font("SansSerif", Font.PLAIN, 16);
 
         JLabel usernameLabel = new JLabel("Enter your username: e.g Alice");
         usernameLabel.setFont(labelFont);
@@ -70,6 +75,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         vibeFieldError.setFont(labelFont);
 
         final JPanel buttons = new JPanel();
+        Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
         findLocationButton = new JButton("Find Locations");
         findLocationButton.setFont(buttonFont);
         findLocationButton.setSize(60, 45);
@@ -86,53 +92,69 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.add(vibeFieldError);
         this.add(buttons);
 
-        findLocationButton.addActionListener(e -> {
+        findLocationButton.addActionListener(event -> {
             String username = usernameField.getText().trim();
             String postalCode = postalCodeInputField.getText().trim();
             String vibe = vibeField.getText().trim();
-
             if (username.isEmpty() || postalCode.isEmpty() || vibe.isEmpty()) {
-                JOptionPane.showMessageDialog(this,
-                        "Please fill out all fields.",
-                        "Missing Information",
-                        JOptionPane.WARNING_MESSAGE);
-                return;
+                missingFieldsWarning();
             }
-
             findLocationButton.setEnabled(false);
-
-            SwingWorker<Void, Void> worker = new SwingWorker<>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    loginController.execute(username, postalCode);
-                    recommendationController.execute(vibe, postalCode);
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    findLocationButton.setEnabled(true);
-                    loginController.switchToRecommendationView();
-                }
-            };
-            worker.execute();
+            startFindLocationWorker(username, postalCode, vibe);
         });
-
     }
 
-    public void setUsernameField(String username) {
+    private void missingFieldsWarning() {
+        JOptionPane.showMessageDialog(this, "Please fill out all fields.",
+                "Missing Information", JOptionPane.WARNING_MESSAGE);
+    }
+
+    private void startFindLocationWorker(String username, String postalCode, String vibe) {
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                loginController.execute(username, postalCode);
+                recommendationController.execute(vibe, postalCode);
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                findLocationButton.setEnabled(true);
+                loginController.switchToRecommendationView();
+            }
+        };
+        worker.execute();
+    }
+
+    /**
+     * Sets the username field through the UI.
+     *
+     * @param username the user's username
+     */
+    public final void setUsernameField(String username) {
         this.usernameField.setText(username);
     }
 
-    public void setPostalCodeField(String postalCode) {
+    /**
+     * Sets the postal code field through the UI.
+     *
+     * @param postalCode the user's postal code
+     */
+    public final void setPostalCodeField(String postalCode) {
         this.postalCodeInputField.setText(postalCode);
     }
 
-    public void setVibeField(String vibe) {
+    /**
+     * Sets the vibe field through the UI.
+     *
+     * @param vibe the user's given vibe
+     */
+    public final void setVibeField(String vibe) {
         this.vibeField.setText(vibe);
     }
 
-    public void setRecommendationController(RecommendationController recommendationController) {
+    public final void setRecommendationController(RecommendationController recommendationController) {
         this.recommendationController = recommendationController;
     }
 
@@ -152,11 +174,15 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         usernameField.setText(state.getUsername());
     }
 
-    public String getViewName() {
+    public final String getViewName() {
         return viewName;
     }
 
-    public void setLoginController(LoginController loginController) {
+    public final void setLoginController(LoginController loginController) {
         this.loginController = loginController;
+    }
+
+    public final JButton getFindLocationButton() {
+        return findLocationButton;
     }
 }

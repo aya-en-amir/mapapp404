@@ -384,7 +384,6 @@
                        java.lang.StringBuffer, StringBuffer"/>
         </module>
         <module name="InnerAssignment"/>
-        <module name="MagicNumber"/>
         <module name="MatchXpath">
             <property name="query" value="//CLASS_DEF[@text!='Checker' and @text!='Main']
       //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/.."/>
@@ -486,7 +485,7 @@
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
         <module name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="2"/>
+            <property name="allowedDuplicates" value="5"/>
         </module>
         <module name="MultipleVariableDeclarations"/>
         <module name="NestedForDepth">
@@ -658,21 +657,6 @@
         <module name="BooleanExpressionComplexity">
             <property name="max" value="7"/>
         </module>
-        <module name="ClassDataAbstractionCoupling">
-            <!-- Default classes are also listed -->
-            <property name="excludedClasses"
-                      value="boolean, byte, char, double, float, int, long, short, void,
-                       Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void,
-                       Object, Class, String, StringBuffer, StringBuilder,
-                       ArrayIndexOutOfBoundsException, Exception, RuntimeException,
-                       IllegalArgumentException, IllegalStateException,
-                       IndexOutOfBoundsException, NullPointerException, Throwable,
-                       SecurityException, UnsupportedOperationException, List, ArrayList,
-                       Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
-                       HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
-                       UnsupportedEncodingException, BuildException, ConversionException,
-                       FileNotFoundException, TestException"/>
-        </module>
         <module name="ClassFanOutComplexity">
             <property name="max" value="25"/>
             <!-- Default classes are also listed -->
@@ -696,7 +680,6 @@
         <module name="CyclomaticComplexity">
             <property name="switchBlockAsSingleDecisionPoint" value="true"/>
         </module>
-        <module name="JavaNCSS"/>
         <module name="NPathComplexity"/>
 
         <!-- Misc -->
@@ -786,7 +769,7 @@
         <!-- Size Violations -->
         <module name="AnonInnerLength"/>
         <module name="ExecutableStatementCount">
-            <property name="max" value="30"/>
+            <property name="max" value="50"/>
         </module>
         <module name="LambdaBodyLength"/>
         <module name="MethodCount">

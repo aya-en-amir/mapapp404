@@ -13,5 +13,7 @@ public class Recommendation {
         this.locations = locations;
     }
 
-    public List<Location> getLocations() { return locations; }
+    public final List<Location> getLocations() {
+        return locations;
+    }
 }
