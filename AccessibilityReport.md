@@ -3,7 +3,7 @@
 ## Principle of Universal Design
 1. Equitable Use
 
-   The program can be used by a wide range of users without requiring specialized knowledge. However, additional accessibility features can be added to make it more inclusive for people with varying abilities
+   The program is designed to be accessible to most users, however it currently lacks certain accessibility features, such as voice output, which would help to ensure equal access for a wide range of users. 
    
 2. Flexibility in Use
 
