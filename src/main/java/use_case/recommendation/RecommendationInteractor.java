@@ -21,7 +21,7 @@ public class RecommendationInteractor implements RecommendationInputBoundary{
     }
 
     @Override
-    public void execute(RecommendationInputData recoInputData) throws Exception{
+    public void execute(RecommendationInputData recoInputData) {
         final String prompt = recoInputData.getPrompt();
         final String postalCode = recoInputData.getPostalCode();
 

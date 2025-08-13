@@ -35,7 +35,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     public JButton findLocationButton;
 
-    public LoginView(LoginViewModel loginViewModel) throws Exception {
+    public LoginView(LoginViewModel loginViewModel) {
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
 
@@ -103,7 +103,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
             SwingWorker<Void, Void> worker = new SwingWorker<>() {
                 @Override
-                protected Void doInBackground() throws Exception {
+                protected Void doInBackground() {
                     loginController.execute(username, postalCode);
                     recommendationController.execute(vibe, postalCode);
                     return null;
