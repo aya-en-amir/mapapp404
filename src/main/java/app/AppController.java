@@ -1,35 +1,83 @@
 package app;
 
+import data_access.InMemoryDataAccessObject;
 
-import client_service.Recommendation.Recommender;
-import client_service.api.DeepSeekClient;
-import client_service.api.GoogleMapsClient;
-import entity.Location;
-import entity.Recommendation;
-import interface_service.LLMClient;
-import interface_service.RecommenderInterface;
-import io.github.cdimascio.dotenv.Dotenv;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginPresenter;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationController;
+import interface_adapter.recommendation.RecommendationPresenter;
+import interface_adapter.recommendation.RecommendationViewModel;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import use_case.login.LoginInputBoundary;
+import use_case.login.LoginInteractor;
+import use_case.login.LoginOutputBoundary;
+import use_case.recommendation.RecommendationInputBoundary;
+import use_case.recommendation.RecommendationInteractor;
+import use_case.recommendation.RecommendationOutputBoundary;
+import view.LoginView;
+
+import javax.swing.*;
 
 public class AppController {
-    public List<Location> getRecommendations(String prompt) {
-        try {
-            LLMClient llmClient = new DeepSeekClient();
-            final int radiusInMeters = 5000;
-            final String postalCode = "M5S 2E4";
+    private final JPanel cardPanel = new JPanel();
+    private final ViewManagerModel viewManagerModel = new ViewManagerModel();
+    private final InMemoryDataAccessObject userDataAccessObject = new InMemoryDataAccessObject();
+    private LoginViewModel loginViewModel = new LoginViewModel();
+    private LoginView loginView;
+    private RecommendationViewModel recommendationViewModel = new RecommendationViewModel();
 
-            GoogleMapsClient client = new GoogleMapsClient(radiusInMeters);
-            List<Location> locations = client.serveLocations(postalCode);
 
-            RecommenderInterface recommender = new Recommender(prompt, locations, llmClient);
-            Recommendation recommendation = recommender.recommend();
+    public AppController addLoginView() throws Exception{
+        loginView = new LoginView(loginViewModel);
+        cardPanel.add(loginView, loginView.getViewName());
+        return this;
+    }
 
-            return recommendation.getLocations();
+    public AppController addLoginUseCase() {
+        final LoginController loginController = getLoginController();
+        loginView.setLoginController(loginController);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return List.of();
-        }
+        final RecommendationController recommendationController = getRecommendationController();
+
+        loginView.setRecommendationController(recommendationController);
+
+        return this;
+    }
+
+    private @NotNull LoginController getLoginController() {
+        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loginViewModel,
+                recommendationViewModel);
+
+        final LoginInputBoundary loginInteractor = new LoginInteractor(userDataAccessObject, loginOutputBoundary);
+
+        final LoginController loginController = new LoginController(loginInteractor);
+        return loginController;
+    }
+
+    public @NotNull RecommendationController getRecommendationController() {
+        final RecommendationOutputBoundary recommendationOutputBoundary = new RecommendationPresenter(recommendationViewModel,
+                viewManagerModel);
+        final RecommendationInputBoundary recommendationInteractor = new RecommendationInteractor(recommendationOutputBoundary);
+        final RecommendationController recommendationController = new RecommendationController(recommendationInteractor);
+        return recommendationController;
+    }
+
+    public JFrame build() {
+        final JFrame application = new JFrame("Login");
+        application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        application.setContentPane( cardPanel );
+        application.setSize(800, 400);
+        application.setLocationRelativeTo(null);
+        application.setVisible(true);
+        return application;
+    }
+
+    public RecommendationViewModel getRecommendationViewModel() {
+        return recommendationViewModel;
     }
 }
+
+

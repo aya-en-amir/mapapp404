@@ -1,6 +1,7 @@
 package client_service.api;
 
 import com.google.gson.Gson;
+import exceptions.APIException;
 import interface_service.LLMClient;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -30,6 +31,10 @@ public class DeepSeekClient implements LLMClient {
         return API_KEY;
     }
 
+    public void setAPI_KEY_TESTING(String API_KEY){
+        this.API_KEY = API_KEY;
+    }
+
     public String getEndpoint(){
         return endpoint;
     }
@@ -47,20 +52,6 @@ public class DeepSeekClient implements LLMClient {
     public String getLLMResponse(String prompt) {
         String llmResponse = "";
         try{
-//            String request = "{\n" +
-//                    "          \"model\": \"deepseek/deepseek-chat-v3-0324:free\",\n" +
-//                    "          \"messages\": [\n" +
-//                    "            {\"role\": \"user\", " +
-//                    "            \"content\": \"" + prompt + "\"}\n" +
-//                    "          ]\n" +
-//                    "        }";
-//            HttpRequest httpRequest = HttpRequest.newBuilder()
-//                    .uri(URI.create(getEndpoint()))
-//                    .header("Authorization", "Bearer " + getAPI_KEY())
-//                    .POST(BodyPublishers.ofString(request))
-//                    .build();
-//            HttpClient client = HttpClient.newHttpClient();
-//            HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             Map<String, Object> payload = new HashMap<>();
             payload.put("model", "deepseek/deepseek-chat-v3-0324:free");
             payload.put("messages", List.of(new Message("user", prompt)));
@@ -76,6 +67,9 @@ public class DeepSeekClient implements LLMClient {
 
             HttpResponse<String> response = HttpClient.newHttpClient()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() != 200){
+                throw new APIException("Error response from DeepSeek: " + response.statusCode());
+            }
 
             llmResponse = extractFromJSON(response.body());
             System.out.println("Response is a success! \n" + llmResponse);
@@ -83,6 +77,10 @@ public class DeepSeekClient implements LLMClient {
         }
         catch(IOException e){
             System.out.println("IO Exception: " + e.getMessage());
+            return llmResponse;
+        }
+        catch(APIException e){
+            System.out.println("API Exception: " + e.getMessage());
             return llmResponse;
         }
 
@@ -94,18 +92,12 @@ public class DeepSeekClient implements LLMClient {
 
 
     public String extractFromJSON(String jsonResponse){
-        JSONObject jsonObject = new JSONObject(jsonResponse);
-        System.out.println("Raw LLM Response: " + jsonObject);
-        JSONArray choices = jsonObject.getJSONArray("choices");
-        JSONObject message = ((JSONObject)choices.get(0)).getJSONObject("message");
-        String content = message.getString("content");
-        return content;
-
-//        int startCurly = content.indexOf("{");
-//        int endCurly = content.indexOf("}");
-//        String response = content.substring(startCurly+1, endCurly);
-//        ArrayList<String> responseList = new ArrayList<>(Arrays.asList(response.split(", ")));
-//        return responseList;
+            JSONObject jsonObject = new JSONObject(jsonResponse);
+            System.out.println("Raw LLM Response: " + jsonObject);
+            JSONArray choices = jsonObject.getJSONArray("choices");
+            JSONObject message = ((JSONObject)choices.get(0)).getJSONObject("message");
+            String content = message.getString("content");
+            return content;
     }
 
 

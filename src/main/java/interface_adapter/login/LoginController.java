@@ -4,14 +4,19 @@ import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInputData;
 
 public class LoginController {
-    private final LoginInputBoundary loginInputBoundary;
-    public LoginController(LoginInputBoundary loginInputBoundary) {
-        this.loginInputBoundary = loginInputBoundary;
-    }
-    public void execute(String username, String vibe) {
-        final LoginInputData loginInputData = new LoginInputData(
-                username, vibe);
+    private final LoginInputBoundary loginInteractor;
 
-        loginInputBoundary.execute(loginInputData);
+    public LoginController(LoginInputBoundary loginInteractor) {
+        this.loginInteractor = loginInteractor;
+    }
+    public void execute(String username, String postalCode) {
+        final LoginInputData loginInputData = new LoginInputData(username, postalCode);
+
+        loginInteractor.execute(loginInputData);
+    }
+
+    public void switchToRecommendationView() {
+        loginInteractor.switchToRecommendationView();
     }
 }
+

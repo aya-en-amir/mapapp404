@@ -1,4 +1,4 @@
-package client_service.Recommendation;
+package client_service.recommendation;
 
 import entity.Location;
 import entity.Recommendation;
@@ -48,7 +48,8 @@ public class Recommender implements RecommenderInterface {
                 "               (i.e 1. <Name attribute of location 1> \n 2. <Name attribute of location 2>)...) " +
                 "               Structure should follow this template EXACTLY and include NOTHING ELSE.";
         String response = client.getLLMResponse(prompt);
-        return new Recommendation(parseLLMResponse(response));
+        Recommendation recommendation = new Recommendation(parseLLMResponse(response));
+        return recommendation;
     }
 
     public List<Location> parseLLMResponse(String llmResponse) {
