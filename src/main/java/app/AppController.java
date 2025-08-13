@@ -30,7 +30,7 @@ public class AppController {
     private RecommendationViewModel recommendationViewModel = new RecommendationViewModel();
 
 
-    public AppController addLoginView() throws Exception{
+    public AppController addLoginView() {
         loginView = new LoginView(loginViewModel);
         cardPanel.add(loginView, loginView.getViewName());
         return this;

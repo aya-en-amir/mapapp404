@@ -10,7 +10,7 @@ public class RecommendationController {
         this.recommendationInteractor = recommendationInteractor;
     }
 
-    public void execute(String prompt, String postalCode) throws Exception {
+    public void execute(String prompt, String postalCode) {
         final RecommendationInputData inputData = new RecommendationInputData(prompt, postalCode);
         recommendationInteractor.execute(inputData);
     }
