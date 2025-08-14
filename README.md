@@ -30,12 +30,19 @@ If the user is feeling stressed, our program will generate nearby locations such
 
 
 # Table of Contents
+<a name="installation-instructions"></a>
 ### [Installation Instructions](#installation-instructions)
+<a name="usage-instructions"></a>
 ### [Usage Instructions](#usage-instructions)
+<a name="external-apis"></a>
 ### [External APIs](#external-apis)
+<a name="license"></a>
 ### [License](#license)
+<a name="features-of-the-software"></a>
 ### [Features of the Software](#features-of-the-software)
+<a name="feedback"></a>
 ### [Feedback](#feedback)
+<a name="contributions"></a>
 ### [Contributions](#contributions)
 
 
