@@ -1,3 +1,4 @@
+
 # Project Name : MapApp404
 
 
@@ -35,9 +36,6 @@ If the user is feeling stressed, our program will generate nearby locations such
 ### [External APIs](#external-apis)
 ### [License](#license)
 ### [Features of the Software](#features-of-the-software)
-### [Feedback](#feedback)
-### [Contributions](#contributions)
-
 
 
 # [Installation Instructions](#installation-instructions)
@@ -193,4 +191,3 @@ If you or your team would like to contribute to our project, please follow the g
 
 
 Final Note: We hope you enjoy using our software!
-
