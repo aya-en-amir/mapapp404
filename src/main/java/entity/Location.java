@@ -1,7 +1,7 @@
 package entity;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class representing a location.
@@ -13,52 +13,57 @@ public class Location {
     private String address;
     private List<String> reviews = new ArrayList<>();
 
-    public Location(String name, float lat, float lon, List<String> reviews) {
+    public Location(String name, float lat, float lon, List<String> reviews, String address) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
-        this.address = null;
         this.reviews = reviews;
+        this.address = address;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public final void setName(String name) {
         this.name = name;
     }
 
-    public float getLatitude() {
+    public final float getLatitude() {
         return lat;
     }
 
-    public void setLatitude(float lat) {
-        this.lat = lat;
+    public final void setLatitude(float latitude) {
+        this.lat = latitude;
     }
 
-    public float getLongitude() {
+    public final float getLongitude() {
         return lon;
     }
 
-    public void setLongitude(float lon) {
-        this.lon = lon;
+    public final void setLongitude(float longitude) {
+        this.lon = longitude;
     }
 
-    public void setAddress(String address) {this.address = address;}
+    public final void setAddress(String address) {
+        this.address = address;
+    }
 
-    public String getAddress() {return address;}
+    public final String getAddress() {
+        return address;
+    }
 
-    public List<String> getReviews() {
+    public final List<String> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<String> reviews) {
+    public final void setReviews(List<String> reviews) {
         this.reviews = reviews;
     }
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nLat: %f\nLon: %f\nReviews: %s\n", name, lat, lon, reviews.toString());
+        return String.format("Name: %s\nLat: %f\nLon: %s\nAddress: %s\nReviews: %s\n", name, lat, lon, address,
+                reviews.toString());
     }
 }
