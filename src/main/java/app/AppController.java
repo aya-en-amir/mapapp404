@@ -6,20 +6,20 @@ import javax.swing.WindowConstants;
 
 import org.jetbrains.annotations.NotNull;
 
-import dataaccess.InMemoryDataAccessObject;
-import interfaceadapter.ViewManagerModel;
-import interfaceadapter.login.LoginController;
-import interfaceadapter.login.LoginPresenter;
-import interfaceadapter.login.LoginViewModel;
-import interfaceadapter.recommendation.RecommendationController;
-import interfaceadapter.recommendation.RecommendationPresenter;
-import interfaceadapter.recommendation.RecommendationViewModel;
-import usecase.login.LoginInputBoundary;
-import usecase.login.LoginInteractor;
-import usecase.login.LoginOutputBoundary;
-import usecase.recommendation.RecommendationInputBoundary;
-import usecase.recommendation.RecommendationInteractor;
-import usecase.recommendation.RecommendationOutputBoundary;
+import data_access.InMemoryDataAccessObject;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginPresenter;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationController;
+import interface_adapter.recommendation.RecommendationPresenter;
+import interface_adapter.recommendation.RecommendationViewModel;
+import use_case.login.LoginInputBoundary;
+import use_case.login.LoginInteractor;
+import use_case.login.LoginOutputBoundary;
+import use_case.recommendation.RecommendationInputBoundary;
+import use_case.recommendation.RecommendationInteractor;
+import use_case.recommendation.RecommendationOutputBoundary;
 import view.LoginView;
 
 /**

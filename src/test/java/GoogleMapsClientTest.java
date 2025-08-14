@@ -1,4 +1,4 @@
-import clientservice.api.GoogleMapsClient;
+import client_service.api.GoogleMapsClient;
 import entity.Location;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.Test;

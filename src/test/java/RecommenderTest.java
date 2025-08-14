@@ -1,7 +1,7 @@
 
-import clientservice.api.DeepSeekClient;
+import client_service.api.DeepSeekClient;
 import entity.Location;
-import interfaceservice.LlmClient;
+import interface_service.LlmClient;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class RecommenderTest {
         locations.add(location6);
 
         LlmClient DeepSeekClient = new DeepSeekClient();
-        clientservice.recommendation.Recommender locationGiver = new clientservice.recommendation.Recommender(prompt, locations, DeepSeekClient);
+        client_service.recommendation.Recommender locationGiver = new client_service.recommendation.Recommender(prompt, locations, DeepSeekClient);
         System.out.println("Recommended location objects: " + locationGiver.recommend());
     }
 }

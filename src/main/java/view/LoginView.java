@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
-import interfaceadapter.login.LoginController;
-import interfaceadapter.login.LoginState;
-import interfaceadapter.login.LoginViewModel;
-import interfaceadapter.recommendation.RecommendationController;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginState;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.recommendation.RecommendationController;
 
 /**
  * The View for when the user is logging into the program.

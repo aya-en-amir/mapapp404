@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 
 import entity.Location;
 import entity.Recommendation;
-import interfaceadapter.recommendation.RecommendationViewModel;
+import interface_adapter.recommendation.RecommendationViewModel;
 
 public class RecommendationView extends JFrame {
     private JButton viewMapButton;
